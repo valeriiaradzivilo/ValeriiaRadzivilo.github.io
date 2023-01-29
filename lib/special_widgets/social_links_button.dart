@@ -12,10 +12,7 @@ class LinkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 33.w,
-      height: 7.h,
-      child: Padding(
+    return  Padding(
         padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -31,7 +28,7 @@ class LinkButton extends StatelessWidget {
             text,
             style: TextStyle(
               color: Colors.black,
-              fontSize: 3.w,
+              fontSize: 4.w,
             ),
             textAlign: TextAlign.center,
           ),
@@ -45,7 +42,7 @@ class LinkButton extends StatelessWidget {
             }
           },
         ),
-      ),
+
     );
   }
 }

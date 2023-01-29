@@ -134,7 +134,7 @@ class HomePage extends StatelessWidget {
                       child: MainText(
                         text: "Android / Flutter developer",
                         levelBold: 2,
-                        paddingLevel: 1.h,
+                        paddingLevel: 1.w,
                       ),
                     ),
                   ),

@@ -21,7 +21,7 @@ class TopicNGrid extends StatelessWidget {
                         crossAxisCount: columnsAmount,
                         mainAxisSpacing: 0,
                         crossAxisSpacing: 0,
-                        childAspectRatio: gridlist.elementAt(0)[2]!="big"?2:0.3,
+                        childAspectRatio: gridlist.elementAt(0)[2]=="big"?0.3:gridlist.elementAt(0)[2]=="contact"? 4: 2,
                       ),
                       delegate: SliverChildBuilderDelegate((context, index) {
                         return gridlist.elementAt(index)[2]=="link"?
