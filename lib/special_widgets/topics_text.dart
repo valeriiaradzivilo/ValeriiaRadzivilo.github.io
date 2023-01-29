@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class TopicText extends StatelessWidget {
   final String text;
@@ -16,7 +17,7 @@ class TopicText extends StatelessWidget {
           text.toUpperCase(),
           style: TextStyle(
             color: Colors.white,
-            fontSize: 43,
+            fontSize: 10.w,
             fontFamily: 'Lato',
             fontWeight: FontWeight.w600,
           ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:portfolio/sections/contact_widget.dart';
 import 'package:portfolio/special_widgets/main_text.dart';
-import 'package:portfolio/special_widgets/social_links_button.dart';
 import 'package:portfolio/special_widgets/topic_plus_grid.dart';
 import 'package:portfolio/special_widgets/topics_text.dart';
 import 'package:sizer/sizer.dart';

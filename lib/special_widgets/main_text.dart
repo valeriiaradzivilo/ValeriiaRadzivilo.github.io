@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sizer/sizer.dart';
 
 class MainText extends StatelessWidget {
   final String text;
@@ -15,7 +16,7 @@ class MainText extends StatelessWidget {
         text,
         style: TextStyle(
           color: CupertinoColors.black,
-          fontSize: 23,
+          fontSize: 5.w,
           fontFamily: 'Lato',
           fontWeight: levelBold == 1
               ? FontWeight.w700

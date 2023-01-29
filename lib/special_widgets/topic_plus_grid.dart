@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:portfolio/my_projects/to_do_app/util/my_text.dart';
+
 import 'package:portfolio/sections/contact_widget.dart';
 import 'package:portfolio/special_widgets/project_buttons.dart';
 import 'package:portfolio/special_widgets/social_links_button.dart';
-import 'package:portfolio/special_widgets/topics_text.dart';
-import 'package:sizer/sizer.dart';
 
 class TopicNGrid extends StatelessWidget {
   final List gridlist;
@@ -23,7 +21,7 @@ class TopicNGrid extends StatelessWidget {
                         crossAxisCount: columnsAmount,
                         mainAxisSpacing: 0,
                         crossAxisSpacing: 0,
-                        childAspectRatio: gridlist.elementAt(0)[2]!="big"?5:0.8,
+                        childAspectRatio: gridlist.elementAt(0)[2]!="big"?2:0.3,
                       ),
                       delegate: SliverChildBuilderDelegate((context, index) {
                         return gridlist.elementAt(index)[2]=="link"?
