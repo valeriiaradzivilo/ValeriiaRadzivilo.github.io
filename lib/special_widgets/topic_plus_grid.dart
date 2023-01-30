@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 
 import 'package:portfolio/sections/contact_widget.dart';
 import 'package:portfolio/special_widgets/main_text.dart';
@@ -24,7 +23,7 @@ class TopicNGrid extends StatelessWidget {
         height: 60.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          color: Colors.blueAccent[100],
+          color: const Color(0xFFB9CFF8),
         ),
           child: Column(
             children: [
@@ -33,7 +32,7 @@ class TopicNGrid extends StatelessWidget {
                 child: TopicText(text: gridlist.elementAt(0)[0]),
               ),
               Expanded(
-                child: Padding(padding: EdgeInsets.all(20),
+                child: Padding(padding: const EdgeInsets.all(20),
                 child: GridView.builder(
                     itemCount: gridlist.length-1,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

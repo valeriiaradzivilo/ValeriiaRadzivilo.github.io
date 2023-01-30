@@ -28,7 +28,7 @@ void addIngredient(IngredientClass ingredient)
   String getIngredients()
   {
     String answer ="";
-    ingredients?.forEach((element) {answer+=element.name!+" ";});
+    ingredients?.forEach((element) {answer+="${element.name!} ";});
     return answer;
   }
 

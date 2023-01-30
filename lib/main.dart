@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:portfolio/special_widgets/main_text.dart';
 import 'package:portfolio/special_widgets/topic_plus_grid.dart';
-import 'package:portfolio/special_widgets/topics_text.dart';
 import 'package:sizer/sizer.dart';
-
 import 'extra_skills/abstract_factory.dart';
 import 'extra_skills/builder_design_pattern/main_builder.dart';
 import 'my_projects/api_project/views/home_page_api.dart';
@@ -29,7 +25,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: const HomePage(),
       );
     });
   }
@@ -149,11 +145,11 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color.fromARGB(255, 147, 149, 211),
       appBar: AppBar(
         centerTitle: true,
-        title: MainText(
-          text: "Valeriia Radzivilo",
-          levelBold: 2,
-          paddingLevel: 2.h,
-        ),
+        title: const Text("Valeriia Radzivilo",
+        style: TextStyle(
+          fontSize: 24,
+          color: Colors.black
+        ),),
         backgroundColor: const Color(0xFFEEE16D),
         elevation: 0,
       ),
@@ -182,7 +178,7 @@ class _HomePageState extends State<HomePage> {
 
                   });
                 },
-                key: new ValueKey(currentIndex),
+                key: ValueKey(currentIndex),
                 child: TopicNGrid(gridlist: listOfAllLists.elementAt(currentIndex), columnsAmount:listOfAllLists.elementAt(currentIndex)[0][2]=="big"||listOfAllLists.elementAt(currentIndex)[0][2]=="skill"||listOfAllLists.elementAt(currentIndex)[0][2]=="project"? 2:1,)
             ),
 
