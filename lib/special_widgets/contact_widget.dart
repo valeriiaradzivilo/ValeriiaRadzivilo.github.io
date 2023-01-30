@@ -84,7 +84,7 @@ class ContactsZip extends StatelessWidget {
     return MainText(
       text: additional_text + textInfo,
       levelBold: 0,
-      paddingLevel: paddingAll,
+      paddingLevel: 0,
     );
   }
 }

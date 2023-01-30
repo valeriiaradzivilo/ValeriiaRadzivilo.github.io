@@ -37,7 +37,7 @@ class TopicNGrid extends StatelessWidget {
                     itemCount: gridlist.length-1,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: columnsAmount,
-                      childAspectRatio: gridlist.elementAt(0)[2]!="big"?(1 / 0.4):(1 / 3),
+                      childAspectRatio: gridlist.elementAt(0)[2]!="big"?(1 / 0.5):(1 / 3),
                 ),
                     itemBuilder: (BuildContext context, int index) {
                       index+=1;
