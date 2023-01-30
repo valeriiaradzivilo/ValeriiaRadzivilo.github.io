@@ -80,15 +80,7 @@ class AbstrFactApp extends StatelessWidget {
               loadingWidgetFactory.createLoadingWidget(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton.icon(
-                  // style: style,
-                  onPressed: () async {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => HomePage()));
-                  },
-                  icon: const Icon(Icons.arrow_circle_left_outlined),
-                  label: const Text('Go back to portfolio'),
-                ),
+                child: goBackHome(),
               ),
             ],
           ),

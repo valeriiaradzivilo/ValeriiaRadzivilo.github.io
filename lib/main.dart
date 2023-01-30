@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:portfolio/special_widgets/main_text.dart';
 import 'package:portfolio/special_widgets/topic_plus_grid.dart';
 import 'package:portfolio/special_widgets/topics_text.dart';
@@ -34,9 +35,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int currentIndex = 0;
 
   List bigInfo = [
+    ["General Information",null,"big"],
     [
       "Photo",
       "assets/images/my_photo.jpg", "big"
@@ -49,6 +58,7 @@ class HomePage extends StatelessWidget {
     ],
   ];
   List myContacts = [
+    ["Contact me",null,"contact"],
 
     [
       "City",
@@ -67,18 +77,20 @@ class HomePage extends StatelessWidget {
 
   List mySkills =
   [
-    ["Skills", "Java", "text"],
-    ["Skills", "Kotlin", "text"],
-    ["Skills", "Android Studio", "text"],
-    ["Skills", "REST API", "text"],
-    ["Skills", "MYSQL", "text"],
-    ["Skills", "Flutter", "text"],
-    ["Skills", "Git", "text"],
-    ["Skills", "Dart", "text"],
+    ["Skills",null,"skill"],
+    ["Skills", "Java", "skill"],
+    ["Skills", "Kotlin", "skill"],
+    ["Skills", "Android Studio", "skill"],
+    ["Skills", "REST API", "skill"],
+    ["Skills", "MYSQL", "skill"],
+    ["Skills", "Flutter", "skill"],
+    ["Skills", "Git", "skill"],
+    ["Skills", "Dart", "skill"],
 
   ];
 
   List linkButtonsList = [
+    ["Profiles",null,"link"],
     [
       "LinkedIn profile",
       "https://www.linkedin.com/in/valeriia-radzivilo-0883ba248",
@@ -91,6 +103,7 @@ class HomePage extends StatelessWidget {
   ];
 
   List projectButtonsList = [
+    ["Projects",null,"project"],
     ["Calendar for online teachers", SimpleCalendar(),"project"],
     ["REST API work", ApiWorkPage(),"project"],
     ["Calculator", Calculator(),"project"],
@@ -98,6 +111,37 @@ class HomePage extends StatelessWidget {
     ["Design Pattern: Abstract Factory",AbstractFactory(),"project"],
     ["Design Pattern: Builder",BuilderAppHomePage(),"project"]
   ];
+
+  late List listOfAllLists = [bigInfo,
+    myContacts,
+    mySkills,
+    linkButtonsList,
+    projectButtonsList];
+
+
+  @override
+  initState() {
+    listOfAllLists = [bigInfo,
+      myContacts,
+      mySkills,
+      linkButtonsList,
+      projectButtonsList];
+    super.initState();
+
+
+  }
+
+  addCurrentIndex()
+  {
+    setState(() {
+      if(currentIndex+1<=listOfAllLists.length)
+      {
+        currentIndex+=1;
+      }
+    });
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,61 +157,40 @@ class HomePage extends StatelessWidget {
         backgroundColor: const Color(0xFFEEE16D),
         elevation: 0,
       ),
-      body: Row(
-        children: [
-          Expanded(
-            child: CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  backgroundColor: const Color(0xFFEEE16D),
-                  stretch: true,
-                  expandedHeight: 10.h,
-                  flexibleSpace: FlexibleSpaceBar(
-                    stretchModes: <StretchMode>[
-                      StretchMode.zoomBackground,
-                      StretchMode.blurBackground,
-                      StretchMode.fadeTitle,
-                    ],
-                    centerTitle: true,
-                    title: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: MainText(
-                        text: "Android / Flutter developer",
-                        levelBold: 2,
-                        paddingLevel: 1.w,
-                      ),
-                    ),
-                  ),
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Dismissible(
+              resizeDuration: null,
+                onDismissed: (DismissDirection direction) {
+                  setState(() {
+                    if(currentIndex+1<listOfAllLists.length && (currentIndex-1>=0)) {
+                      currentIndex +=
+                          direction == DismissDirection.endToStart ? 1 : -1;
+                    }
+                    else if(currentIndex==0)
+                      {
+                        currentIndex +=
+                        direction == DismissDirection.endToStart ? 1 : listOfAllLists.length-1;
+                      }
+                    else if(currentIndex==listOfAllLists.length-1)
+                    {
+                      currentIndex +=
+                      direction == DismissDirection.endToStart ? -listOfAllLists.length+1 : -1;
+                    }
+                    print(currentIndex);
 
-                SliverToBoxAdapter(
-                  child: TopicText(text: "GENERAL INFORMATION"),
-                ),
-                TopicNGrid(
-                  gridlist: bigInfo,
-                  columnsAmount: 2,
-                ),
-                TopicNGrid(
-                  gridlist: myContacts,
-                  columnsAmount: 1,
-                ),
-                SliverToBoxAdapter(child: TopicText(text: "Find me")),
-                TopicNGrid(
-                  gridlist: linkButtonsList,
-                  columnsAmount: linkButtonsList.length,
-                ),
-                SliverToBoxAdapter(
-                  child: TopicText(text: "Projects"),
-                ),
-                TopicNGrid(
-                  gridlist: projectButtonsList,
-                  columnsAmount: (projectButtonsList.length/3).toInt(),
-                ),
-              ],
+                  });
+                },
+                key: new ValueKey(currentIndex),
+                child: TopicNGrid(gridlist: listOfAllLists.elementAt(currentIndex), columnsAmount:listOfAllLists.elementAt(currentIndex)[0][2]=="big"||listOfAllLists.elementAt(currentIndex)[0][2]=="skill"||listOfAllLists.elementAt(currentIndex)[0][2]=="project"? 2:1,)
             ),
-          ),
-        ],
-      ),
+
+            Text("Just to check "),
+
+          ],
+        ),
+        ),
     );
   }
 }
