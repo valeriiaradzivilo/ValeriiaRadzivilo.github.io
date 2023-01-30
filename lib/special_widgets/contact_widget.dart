@@ -64,7 +64,7 @@ class ContactsZip extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Center(child: JustText("<-   \n")),
+                child: Center(child: JustText("<- swipe left \n")),
               )
             : (type!="Photo")?JustText(""):Text(""),
       ]

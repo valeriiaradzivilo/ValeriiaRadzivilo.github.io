@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:portfolio/sections/contact_widget.dart';
+import 'package:portfolio/special_widgets/contact_widget.dart';
 import 'package:portfolio/special_widgets/main_text.dart';
 import 'package:portfolio/special_widgets/project_buttons.dart';
 import 'package:portfolio/special_widgets/social_links_button.dart';

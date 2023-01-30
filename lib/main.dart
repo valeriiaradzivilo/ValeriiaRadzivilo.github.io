@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/my_projects/to_do_app/util/my_text.dart';
 import 'package:portfolio/special_widgets/topic_plus_grid.dart';
 import 'package:sizer/sizer.dart';
 import 'extra_skills/abstract_factory.dart';
@@ -116,7 +117,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     projectButtonsList];
 
 
-  late AnimationController _controller;
+  late AnimationController _cardAnimationController;
+  late Animation cardAnim;
 
   @override
   initState() {
@@ -126,17 +128,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       linkButtonsList,
       projectButtonsList];
     super.initState();
-    _controller = AnimationController(
-      duration: const Duration(seconds: 2),
+    _cardAnimationController = AnimationController(
+      lowerBound: 0.0,
+      upperBound: 2.0,
+      duration: const Duration(seconds: 1),
       vsync: this,
-    )..repeat();
+    );
 
 
 
   }
+
   @override
   void dispose() {
-    _controller.dispose();
+    _cardAnimationController.dispose();
     super.dispose();
   }
 
@@ -151,9 +156,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
 
   }
+  bool selected = false;
+
 
   @override
   Widget build(BuildContext context) {
+    const double smallLogo = 100;
+    const double bigLogo = 200;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 147, 149, 211),
       appBar: AppBar(
@@ -172,11 +182,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
 
             AnimatedBuilder(
-              animation: _controller,
+              animation: _cardAnimationController,
               child: Dismissible(
                     resizeDuration: null,
                     onDismissed: (DismissDirection direction) {
                       setState(() {
+                        _cardAnimationController.stop();
                         if(currentIndex+1<listOfAllLists.length && (currentIndex-1>=0)) {
                           currentIndex +=
                           direction == DismissDirection.endToStart ? 1 : -1;
@@ -199,28 +210,39 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
               builder: (BuildContext context, Widget? child) {
                 return Transform.rotate(
-                  angle: _controller.value*0.05,
+                  angle: _cardAnimationController.value*-0.02,
+                  origin: const Offset(100, 1000),
                   child: child,
                 );
+
               },
             ),
 
+
+
+
             ElevatedButton.icon(onPressed: (){
               setState(() {
-              if(_controller.isAnimating) {
-                    _controller.stop();
+              if(_cardAnimationController.isAnimating) {
+                    _cardAnimationController.stop();
                   }
-              else{
-                _controller.repeat();
+              else {
+                _cardAnimationController.repeat();
               }
 
-
               });
-                }, icon: _controller.isAnimating?Icon(Icons.pause_circle_outline_rounded):
+                }, icon: _cardAnimationController.isAnimating?Icon(Icons.pause_circle_outline_rounded):
                 Icon(Icons.play_arrow_outlined),
                 label:
-                Text("${_controller.isAnimating?"Stop":"Resume"} animation")
-            )
+                Text("${_cardAnimationController.isAnimating?"Stop":"Resume"} animation")
+            ),
+            
+            
+            MainText(text: "Hi, if you like my projects or you have some suggestions on how to improve them, text me on Gmail, you can find it on second page."),
+
+
+
+
 
           ],
         ),
