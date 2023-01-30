@@ -14,9 +14,7 @@ class goBackHome extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.deepPurple,
         ),
-        onPressed: () async {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()));
-        },
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage())),
         icon:const Icon(Icons.arrow_circle_left_outlined),
         label: const Text('Go back to portfolio'),
       ),

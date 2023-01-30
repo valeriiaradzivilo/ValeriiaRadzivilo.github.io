@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:portfolio/special_widgets/main_text.dart';
+import 'package:portfolio/my_projects/to_do_app/util/my_text.dart';
 import 'package:portfolio/special_widgets/topic_plus_grid.dart';
-import 'package:portfolio/special_widgets/topics_text.dart';
 import 'package:sizer/sizer.dart';
-
 import 'extra_skills/abstract_factory.dart';
 import 'extra_skills/builder_design_pattern/main_builder.dart';
 import 'my_projects/api_project/views/home_page_api.dart';
 import 'my_projects/calculator.dart';
 import 'my_projects/calendar.dart';
 import 'my_projects/to_do_app/main_to_do.dart';
+import 'dart:math' as math;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,15 +26,24 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: const HomePage(),
       );
     });
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  int currentIndex = 0;
+  String stopOrResume = "Stop";
 
   List bigInfo = [
+    ["General Information",null,"big"],
     [
       "Photo",
       "assets/images/my_photo.jpg", "big"
@@ -49,6 +56,7 @@ class HomePage extends StatelessWidget {
     ],
   ];
   List myContacts = [
+    ["Contact me",null,"contact"],
 
     [
       "City",
@@ -67,18 +75,20 @@ class HomePage extends StatelessWidget {
 
   List mySkills =
   [
-    ["Skills", "Java", "text"],
-    ["Skills", "Kotlin", "text"],
-    ["Skills", "Android Studio", "text"],
-    ["Skills", "REST API", "text"],
-    ["Skills", "MYSQL", "text"],
-    ["Skills", "Flutter", "text"],
-    ["Skills", "Git", "text"],
-    ["Skills", "Dart", "text"],
+    ["Skills",null,"skill"],
+    ["Skills", "Java", "skill"],
+    ["Skills", "Kotlin", "skill"],
+    ["Skills", "Android Studio", "skill"],
+    ["Skills", "REST API", "skill"],
+    ["Skills", "MYSQL", "skill"],
+    ["Skills", "Flutter", "skill"],
+    ["Skills", "Git", "skill"],
+    ["Skills", "Dart", "skill"],
 
   ];
 
   List linkButtonsList = [
+    ["Profiles",null,"link"],
     [
       "LinkedIn profile",
       "https://www.linkedin.com/in/valeriia-radzivilo-0883ba248",
@@ -91,6 +101,7 @@ class HomePage extends StatelessWidget {
   ];
 
   List projectButtonsList = [
+    ["Projects",null,"project"],
     ["Calendar for online teachers", SimpleCalendar(),"project"],
     ["REST API work", ApiWorkPage(),"project"],
     ["Calculator", Calculator(),"project"],
@@ -99,75 +110,143 @@ class HomePage extends StatelessWidget {
     ["Design Pattern: Builder",BuilderAppHomePage(),"project"]
   ];
 
+  late List listOfAllLists = [bigInfo,
+    myContacts,
+    mySkills,
+    linkButtonsList,
+    projectButtonsList];
+
+
+  late AnimationController _cardAnimationController;
+  late Animation cardAnim;
+
+  @override
+  initState() {
+    listOfAllLists = [bigInfo,
+      myContacts,
+      mySkills,
+      linkButtonsList,
+      projectButtonsList];
+    super.initState();
+    _cardAnimationController = AnimationController(
+      lowerBound: 0.0,
+      upperBound: 2.0,
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+
+
+
+  }
+
+  @override
+  void dispose() {
+    _cardAnimationController.dispose();
+    super.dispose();
+  }
+
+  addCurrentIndex()
+  {
+    setState(() {
+      if(currentIndex+1<=listOfAllLists.length)
+      {
+        currentIndex+=1;
+      }
+    });
+
+
+  }
+  bool selected = false;
+
+
   @override
   Widget build(BuildContext context) {
+    const double smallLogo = 100;
+    const double bigLogo = 200;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 147, 149, 211),
       appBar: AppBar(
         centerTitle: true,
-        title: MainText(
-          text: "Valeriia Radzivilo",
-          levelBold: 2,
-          paddingLevel: 2.h,
-        ),
+        title: const Text("Valeriia Radzivilo",
+        style: TextStyle(
+          fontSize: 24,
+          color: Colors.black
+        ),),
         backgroundColor: const Color(0xFFEEE16D),
         elevation: 0,
       ),
-      body: Row(
-        children: [
-          Expanded(
-            child: CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  backgroundColor: const Color(0xFFEEE16D),
-                  stretch: true,
-                  expandedHeight: 10.h,
-                  flexibleSpace: FlexibleSpaceBar(
-                    stretchModes: <StretchMode>[
-                      StretchMode.zoomBackground,
-                      StretchMode.blurBackground,
-                      StretchMode.fadeTitle,
-                    ],
-                    centerTitle: true,
-                    title: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: MainText(
-                        text: "Android / Flutter developer",
-                        levelBold: 2,
-                        paddingLevel: 1.h,
-                      ),
-                    ),
-                  ),
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
 
-                SliverToBoxAdapter(
-                  child: TopicText(text: "GENERAL INFORMATION"),
-                ),
-                TopicNGrid(
-                  gridlist: bigInfo,
-                  columnsAmount: 2,
-                ),
-                TopicNGrid(
-                  gridlist: myContacts,
-                  columnsAmount: 1,
-                ),
-                SliverToBoxAdapter(child: TopicText(text: "Find me")),
-                TopicNGrid(
-                  gridlist: linkButtonsList,
-                  columnsAmount: linkButtonsList.length,
-                ),
-                SliverToBoxAdapter(
-                  child: TopicText(text: "Projects"),
-                ),
-                TopicNGrid(
-                  gridlist: projectButtonsList,
-                  columnsAmount: (projectButtonsList.length/3).toInt(),
-                ),
-              ],
+
+            AnimatedBuilder(
+              animation: _cardAnimationController,
+              child: Dismissible(
+                    resizeDuration: null,
+                    onDismissed: (DismissDirection direction) {
+                      setState(() {
+                        _cardAnimationController.stop();
+                        if(currentIndex+1<listOfAllLists.length && (currentIndex-1>=0)) {
+                          currentIndex +=
+                          direction == DismissDirection.endToStart ? 1 : -1;
+                        }
+                        else if(currentIndex==0)
+                        {
+                          currentIndex +=
+                          direction == DismissDirection.endToStart ? 1 : listOfAllLists.length-1;
+                        }
+                        else if(currentIndex==listOfAllLists.length-1)
+                        {
+                          currentIndex +=
+                          direction == DismissDirection.endToStart ? -listOfAllLists.length+1 : -1;
+                        }
+
+                      });
+                    },
+                    key: ValueKey(currentIndex),
+                    child: TopicNGrid(gridlist: listOfAllLists.elementAt(currentIndex), columnsAmount:listOfAllLists.elementAt(currentIndex)[0][2]=="big"||listOfAllLists.elementAt(currentIndex)[0][2]=="skill"||listOfAllLists.elementAt(currentIndex)[0][2]=="project"? 2:1,)
+              ),
+              builder: (BuildContext context, Widget? child) {
+                return Transform.rotate(
+                  angle: _cardAnimationController.value*-0.02,
+                  origin: const Offset(100, 1000),
+                  child: child,
+                );
+
+              },
             ),
-          ),
-        ],
-      ),
+
+
+
+
+            ElevatedButton.icon(onPressed: (){
+              setState(() {
+              if(_cardAnimationController.isAnimating) {
+                    _cardAnimationController.stop();
+                  }
+              else {
+                _cardAnimationController.repeat();
+              }
+
+              });
+                }, icon: _cardAnimationController.isAnimating?Icon(Icons.pause_circle_outline_rounded):
+                Icon(Icons.play_arrow_outlined),
+                label:
+                Text("${_cardAnimationController.isAnimating?"Stop":"Resume"} animation")
+            ),
+            
+            
+            MainText(text: "Hi, if you like my projects or you have some suggestions on how to improve them, text me on Gmail, you can find it on second page."),
+
+
+
+
+
+          ],
+        ),
+        ),
     );
   }
 }

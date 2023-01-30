@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -12,12 +11,13 @@ class TopicText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(0),
       child: Container(
+        width: 100.w,
         color: const Color(0xFF38338e),
         child: Text(
           text.toUpperCase(),
           style: TextStyle(
             color: Colors.white,
-            fontSize: 10.w,
+            fontSize: 6.w,
             fontFamily: 'Lato',
             fontWeight: FontWeight.w600,
           ),

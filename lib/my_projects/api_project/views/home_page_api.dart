@@ -49,6 +49,8 @@ class _ApiWorkPageState extends State<ApiWorkPage> {
           itemCount: comments?.length,
             itemBuilder: (context, index){
           return Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(color: Colors.amber[100]),
             child: Row(
               children: [
                 Container(
@@ -67,20 +69,20 @@ class _ApiWorkPageState extends State<ApiWorkPage> {
                         ,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 24,
+                        style: const TextStyle(fontSize: 24,
                         fontWeight: FontWeight.bold),
                       ),
                       Text(
                       comments![index].body ?? "no comment provided",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 24),),
+                        style: const TextStyle(fontSize: 24),),
 
                       const Text("Source: https://jsonplaceholder.typicode.com/",
                       style: TextStyle(color: Colors.redAccent,
                       fontSize: 14),
                       ),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                     ],
                   ),
                 ),
@@ -89,7 +91,7 @@ class _ApiWorkPageState extends State<ApiWorkPage> {
                   child: ElevatedButton.icon(
                     // style: style,
                     onPressed: () async {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const HomePage()));
                       },
                     icon:const Icon(Icons.arrow_circle_left_outlined),
                     label: const Text('Go back to portfolio'),

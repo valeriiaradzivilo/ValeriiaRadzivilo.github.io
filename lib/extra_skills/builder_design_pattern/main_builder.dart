@@ -21,7 +21,7 @@ class BuilderApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.deepPurple,
           ),
-          home: BuilderAppHomePage(),
+          home: const BuilderAppHomePage(),
         );
       },
     );
@@ -56,7 +56,7 @@ class _BuilderAppHomePageState extends State<BuilderAppHomePage> {
 
   Container infoBuilder() {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
           child: Column(children: [
             Text(
               "INFO:",
@@ -64,13 +64,13 @@ class _BuilderAppHomePageState extends State<BuilderAppHomePage> {
                 fontSize: 8.w,
              ),
             ),
-            Divider(),
+            const Divider(),
             Text(
               "Price",
               style: TextStyle(fontWeight: FontWeight.bold,
                 fontSize: 3.w,),
             ),
-            Text(dropdownValue.getPrice().toString()+"\n",
+            Text("${dropdownValue.getPrice()}\n",
             style:TextStyle(
             fontSize: 2.w,)),
             Text(
@@ -78,7 +78,7 @@ class _BuilderAppHomePageState extends State<BuilderAppHomePage> {
               style: TextStyle(fontWeight: FontWeight.bold,
                 fontSize: 3.w,),
             ),
-            Text(dropdownValue.getIngredients()+"\n",
+            Text("${dropdownValue.getIngredients()}\n",
                 style:TextStyle(
                   fontSize: 2.w,)),
             Text(

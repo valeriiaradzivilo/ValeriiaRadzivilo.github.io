@@ -10,7 +10,7 @@ class MainText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(12.0),
         child: Text(text,
-          overflow: TextOverflow.ellipsis,
+          overflow: TextOverflow.visible,
         style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 2.w+1.h,
