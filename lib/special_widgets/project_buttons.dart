@@ -23,7 +23,7 @@ class ProjectButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16)
             ),
           ),
-          child: MainText(text: text, levelBold: 1, paddingLevel: 0,
+          child: MainText(text: text, levelBold: 0, paddingLevel: 0,
           ),
           onPressed: (){
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>page));

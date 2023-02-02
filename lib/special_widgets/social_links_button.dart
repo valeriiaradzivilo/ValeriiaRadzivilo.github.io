@@ -7,41 +7,41 @@ import 'package:url_launcher/url_launcher.dart';
 class LinkButton extends StatelessWidget {
   final String text;
   final String urlText;
-  const LinkButton({Key? key, required this.text, required this.urlText}) : super(key: key);
+  const LinkButton({Key? key, required this.text, required this.urlText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFEEE16D),
-            shape: RoundedRectangleBorder(
-                side: const BorderSide(
-                  width: 0,
-                ),
-                // border radius
-                borderRadius: BorderRadius.circular(16)),
-          ),
-          child: Text(
-            text,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 4.w,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          onPressed: () async {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text("Opening profile")));
-            if (kIsWeb) {
-              html.window.open(urlText, '_blank');
-            } else {
-              await launchUrl(Uri.parse(urlText));
-            }
-          },
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFEEE16D),
+          shape: RoundedRectangleBorder(
+              side: const BorderSide(
+                width: 0,
+              ),
+              // border radius
+              borderRadius: BorderRadius.circular(16)),
         ),
-
+        child: Text(
+          text,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 3.h,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        onPressed: () async {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text("Opening profile")));
+          if (kIsWeb) {
+            html.window.open(urlText, '_blank');
+          } else {
+            await launchUrl(Uri.parse(urlText));
+          }
+        },
+      ),
     );
   }
 }
