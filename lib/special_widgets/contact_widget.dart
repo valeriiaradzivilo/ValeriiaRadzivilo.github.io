@@ -39,7 +39,7 @@ class ContactsZip extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Image(
                     image: AssetImage(textInfo),
-                    width: 30.h,
+                    width: 20.h,
                   ),
                 )
             : TopicText(text: type),
