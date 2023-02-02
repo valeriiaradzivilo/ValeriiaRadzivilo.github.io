@@ -2,6 +2,7 @@ import 'package:portfolio/extra_skills/builder_design_pattern/ingredients/ingred
 import 'package:portfolio/extra_skills/builder_design_pattern/sushi/sushi_all.dart';
 import 'package:portfolio/extra_skills/builder_design_pattern/sushi/sushi_class.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/special_widgets/go_back_home_button.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -61,26 +62,26 @@ class _BuilderAppHomePageState extends State<BuilderAppHomePage> {
             Text(
               "INFO:",
               style: TextStyle(fontWeight: FontWeight.bold,
-                fontSize: 8.w,
+                fontSize: 8.h,
              ),
             ),
             const Divider(),
             Text(
               "Price",
               style: TextStyle(fontWeight: FontWeight.bold,
-                fontSize: 3.w,),
+                fontSize: 3.h,),
             ),
             Text("${dropdownValue.getPrice()}\n",
             style:TextStyle(
-            fontSize: 2.w,)),
+            fontSize: 2.h,)),
             Text(
               "Ingredients",
               style: TextStyle(fontWeight: FontWeight.bold,
-                fontSize: 3.w,),
+                fontSize: 3.h,),
             ),
             Text("${dropdownValue.getIngredients()}\n",
                 style:TextStyle(
-                  fontSize: 2.w,)),
+                  fontSize: 2.h,)),
             Text(
               "Allergens",
               style: TextStyle(fontWeight: FontWeight.bold,
@@ -118,6 +119,7 @@ class _BuilderAppHomePageState extends State<BuilderAppHomePage> {
               },
             ),
             infoBuilder(),
+            goBackHome(),
           ],
         ),
       ),
