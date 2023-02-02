@@ -17,7 +17,7 @@ class TopicText extends StatelessWidget {
           text.toUpperCase(),
           style: TextStyle(
             color: Colors.white,
-            fontSize: 6.w,
+            fontSize: 4.h,
             fontFamily: 'Lato',
             fontWeight: FontWeight.w600,
           ),

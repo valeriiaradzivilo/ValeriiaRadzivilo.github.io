@@ -82,8 +82,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ["Skills", "REST API", "skill"],
     ["Skills", "MYSQL", "skill"],
     ["Skills", "Flutter", "skill"],
-    ["Skills", "Git", "skill"],
+    ["Skills", "Git (Version Control)", "skill"],
     ["Skills", "Dart", "skill"],
+    ["Skills", "FlutterFlow", "skill"],
 
   ];
 
@@ -161,8 +162,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    const double smallLogo = 100;
-    const double bigLogo = 200;
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 147, 149, 211),
@@ -206,7 +205,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       });
                     },
                     key: ValueKey(currentIndex),
-                    child: TopicNGrid(gridlist: listOfAllLists.elementAt(currentIndex), columnsAmount:listOfAllLists.elementAt(currentIndex)[0][2]=="big"||listOfAllLists.elementAt(currentIndex)[0][2]=="skill"||listOfAllLists.elementAt(currentIndex)[0][2]=="project"? 2:1,)
+                    child: TopicNGrid(gridList: listOfAllLists.elementAt(currentIndex), columnsAmount:listOfAllLists.elementAt(currentIndex)[0][2]=="big"||listOfAllLists.elementAt(currentIndex)[0][2]=="skill"||listOfAllLists.elementAt(currentIndex)[0][2]=="project"? 2:1,)
               ),
               builder: (BuildContext context, Widget? child) {
                 return Transform.rotate(

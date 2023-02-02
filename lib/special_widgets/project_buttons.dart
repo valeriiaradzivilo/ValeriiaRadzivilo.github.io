@@ -10,15 +10,11 @@ class ProjectButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 33.w,
-      height: 10.h,
-      child: Padding(
+    return  Padding(
         padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFFEEE16D),
-
             shape: RoundedRectangleBorder(
                 side: const BorderSide(
                   width: 0,
@@ -33,7 +29,7 @@ class ProjectButton extends StatelessWidget {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>page));
           },
         ),
-      ),
+
     );
   }
 }

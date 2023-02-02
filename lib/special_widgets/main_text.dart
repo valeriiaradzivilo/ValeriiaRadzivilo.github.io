@@ -16,7 +16,7 @@ class MainText extends StatelessWidget {
         text,
         style: TextStyle(
           color: CupertinoColors.black,
-          fontSize: 4.w,
+          fontSize: 3.h,
           fontFamily: 'Lato',
           fontWeight: levelBold == 1
               ? FontWeight.w700
