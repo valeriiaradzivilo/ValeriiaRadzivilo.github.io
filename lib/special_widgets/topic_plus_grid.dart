@@ -21,8 +21,8 @@ class TopicNGrid extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Center(
         child: Container(
-          height: 60.h,
-          width: 62.w,
+          height: 62.h,
+          width: 20.w>20.h?62.w:100.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
             color: const Color(0xFFB9CFF8),
@@ -31,7 +31,7 @@ class TopicNGrid extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: TopicText(text: "< - - - -   ${gridList.elementAt(0)[0]}  - - - - >"),
+                child: TopicText(text: "< - - - -\n${gridList.elementAt(0)[0]}\n- - - - >"),
               ),
               Expanded(
                 child: Padding(
@@ -41,7 +41,7 @@ class TopicNGrid extends StatelessWidget {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: columnsAmount,
                         childAspectRatio: gridList.elementAt(0)[2] == "big"
-                            ? (1.w / 1.h) * 1.3
+                            ? (1.w / 1.h) * 1.4
                             : (1.w / 1.h) * 2.4,
                       ),
                       itemBuilder: (BuildContext context, int index) {
