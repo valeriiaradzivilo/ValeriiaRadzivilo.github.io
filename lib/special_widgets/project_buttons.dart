@@ -26,8 +26,13 @@ class ProjectButton extends StatelessWidget {
           child: MainText(text: text, levelBold: 0, paddingLevel: 0,
           ),
           onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>page));
-          },
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => page,
+              ),
+            );
+            },
         ),
 
     );

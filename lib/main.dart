@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:portfolio/my_projects/to_do_app/util/my_text.dart';
 import 'package:portfolio/special_widgets/topic_plus_grid.dart';
 import 'package:sizer/sizer.dart';
@@ -9,8 +10,9 @@ import 'my_projects/calculator.dart';
 import 'my_projects/calendar.dart';
 import 'my_projects/to_do_app/main_to_do.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
@@ -65,11 +67,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ["Skills", "Kotlin", "skill"],
     ["Skills", "Android Studio", "skill"],
     ["Skills", "REST API", "skill"],
-    ["Skills", "MYSQL", "skill"],
+    ["Skills", "SQL", "skill"],
+    ["Skills", "Bloc library", "skill"],
     ["Skills", "Flutter", "skill"],
     ["Skills", "Git (Version Control)", "skill"],
     ["Skills", "Dart", "skill"],
-    ["Skills", "FlutterFlow", "skill"],
   ];
 
   List linkButtonsList = [
@@ -90,7 +92,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ["Calculator", Calculator(), "project"],
     ["To Doer", ToDoAppPage(), "project"],
     ["Design Pattern: Abstract Factory", AbstractFactory(), "project"],
-    ["Design Pattern: Builder", BuilderAppHomePage(), "project"]
+    ["Design Pattern: Builder", BuilderAppHomePage(), "project"],
+
   ];
 
   late List listOfAllLists = [
@@ -205,13 +208,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   });
                 },
                 icon: _cardAnimationController.isAnimating
-                    ? Icon(Icons.pause_circle_outline_rounded)
-                    : Icon(Icons.play_arrow_outlined),
+                    ? const Icon(Icons.pause_circle_outline_rounded)
+                    : const Icon(Icons.play_arrow_outlined),
                 label: Text(
                     "${_cardAnimationController.isAnimating ? "Stop" : "Resume"} animation")),
             const MainText(
                 text:
-                    "Hi, if you like my projects or you have some suggestions on how to improve them, text me on Gmail, you can find it on second page."),
+                    "Hi, if you like my projects or you have some suggestions on how to improve them, text me on Gmail, you can find it on second page.\nLooking forward to hear from you."),
           ],
         ),
       ),
