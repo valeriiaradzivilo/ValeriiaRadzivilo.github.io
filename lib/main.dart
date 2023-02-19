@@ -96,12 +96,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   ];
 
+  List gitProjects = [
+    ["Git Projects", null, "project"],
+    ["Firebase database", "https://github.com/valeriiaradzivilo/firebase_work_google_course", "link"],
+    ["Language changer (Bloc)", "https://github.com/valeriiaradzivilo/language_changer", "link"],
+    ["Authentication Firebase", "https://github.com/valeriiaradzivilo/login_signup_system", "link"],
+    ["Music player (Storage)", "https://github.com/valeriiaradzivilo/music_player_", "link"],
+
+  ];
+
   late List listOfAllLists = [
     bigInfo,
     myContacts,
     mySkills,
     linkButtonsList,
-    projectButtonsList
+    projectButtonsList,
+    gitProjects
   ];
 
   late AnimationController _cardAnimationController;
@@ -114,7 +124,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       myContacts,
       mySkills,
       linkButtonsList,
-      projectButtonsList
+      projectButtonsList,
+      gitProjects
     ];
     super.initState();
     _cardAnimationController = AnimationController(
