@@ -16,7 +16,7 @@ class DialogueCheck extends StatelessWidget {
     return AlertDialog(
       backgroundColor: Colors.redAccent,
       content: Container(
-        height: 30.h,
+        width: 60.w,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -26,11 +26,11 @@ class DialogueCheck extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold,
             fontSize: 7.w),),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MyButton(name: "No", onPressed: onNo),
-                SizedBox(width: 10.w,),
+                SizedBox(width: 20.w,),
                 MyButton(name: "Yes", onPressed: onYes),
               ],
             )

@@ -6,6 +6,7 @@ import 'package:portfolio/my_projects/to_do_app/data/database_blocks.dart';
 import 'package:portfolio/my_projects/to_do_app/pages/to_do_list_page.dart';
 import 'package:portfolio/my_projects/to_do_app/util/DialogueCheck.dart';
 import 'package:portfolio/my_projects/to_do_app/util/dialogue_new_box.dart';
+import 'package:portfolio/my_projects/to_do_app/util/help_box.dart';
 import 'package:portfolio/my_projects/to_do_app/util/task_block.dart';
 import 'package:sizer/sizer.dart';
 
@@ -119,10 +120,10 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
       Navigator.of(context).pop();
       await Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ToDoListPage(
-                boxName: textFromController,
-                indexBox: indexBox,
-                blocksFirstTasks: db.blocksFirstTasks,
-              )));
+            boxName: textFromController,
+            indexBox: indexBox,
+            blocksFirstTasks: db.blocksFirstTasks,
+          )));
 
       db.updateDb();
       setState(() {
@@ -147,10 +148,10 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
   void openToDoList(String boxName, int index) async {
     await Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => ToDoListPage(
-              boxName: boxName,
-              blocksFirstTasks: db.blocksFirstTasks,
-              indexBox: index,
-            )));
+          boxName: boxName,
+          blocksFirstTasks: db.blocksFirstTasks,
+          indexBox: index,
+        )));
     restartApp();
   }
 
@@ -183,6 +184,20 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
                 "Tasks for today",
               ),
               elevation: 0,
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const HelpBox();
+                            });
+                      },
+                      icon: Icon(Icons.help_center_outlined)),
+                )
+              ],
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: createNewToDoListPage,
@@ -203,11 +218,11 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
                             padding: const EdgeInsets.all(8.0),
                             child: GridView.builder(
                                 gridDelegate:
-                                    const SliverGridDelegateWithMaxCrossAxisExtent(
-                                        maxCrossAxisExtent: 300,
-                                        childAspectRatio: 3 / 3,
-                                        crossAxisSpacing: 20,
-                                        mainAxisSpacing: 20),
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                                    maxCrossAxisExtent: 300,
+                                    childAspectRatio: 3 / 3,
+                                    crossAxisSpacing: 20,
+                                    mainAxisSpacing: 20),
                                 itemCount: db.blocksNames.length,
                                 itemBuilder: (BuildContext ctx, index) {
                                   return GestureDetector(
