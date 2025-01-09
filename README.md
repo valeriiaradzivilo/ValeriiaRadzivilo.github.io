@@ -1,3 +1,3 @@
-# flutter_application_1
+# My portfolio
 
-A new Flutter project.
+Valeriia Radzivilo Flutter portfolio 
