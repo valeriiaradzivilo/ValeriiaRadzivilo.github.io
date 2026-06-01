@@ -11,18 +11,17 @@ import 'package:url_launcher/url_launcher.dart';
 class ContactsZip extends StatelessWidget {
   final String type; //phone photo email
   final String textInfo;
-  ContactsZip({Key? key, required this.type, required this.textInfo})
-      : super(key: key);
+  ContactsZip({super.key, required this.type, required this.textInfo});
 
   void makeCall() {
-    launchUrl(Uri.parse("tel://$textInfo"));
+    launchUrl(Uri.parse('tel://$textInfo'));
   }
 
   void copyText(BuildContext context) {
     Clipboard.setData(ClipboardData(text: textInfo)).then(
       (_) {
         ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Text is copied to clipboard")));
+            const SnackBar(content: Text('Text is copied to clipboard')));
       },
     );
   }
@@ -33,7 +32,7 @@ class ContactsZip extends StatelessWidget {
   Widget build(BuildContext context) {
     return
        Column(children: [
-        type == "Photo"
+        type == 'Photo'
             ?
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -43,16 +42,16 @@ class ContactsZip extends StatelessWidget {
                   ),
                 )
             : TopicText(text: type),
-        (type == "Phone" || type == "Email")
+        (type == 'Phone' || type == 'Email')
             ? Slidable(
                 endActionPane: ActionPane(
                   motion: const StretchMotion(),
                   children: [
                     SlidableAction(
-                      onPressed: type == "Phone"
+                      onPressed: type == 'Phone'
                           ? (context) => makeCall()
                           : (context) => _sendEmail(),
-                      icon: type == "Phone" ? Icons.phone : Icons.mail,
+                      icon: type == 'Phone' ? Icons.phone : Icons.mail,
                       backgroundColor: Colors.greenAccent,
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -64,14 +63,14 @@ class ContactsZip extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Center(child: JustText("<- swipe left \n")),
+                child: Center(child: JustText('<- swipe left \n')),
               )
-            : (type!="Photo")?JustText(""):Text(""),
+            : (type!='Photo')?JustText(''):const Text(''),
       ]
     );
   }
 
-  _sendEmail() async {
+  Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> _sendEmail() async {
     final mailtoLink = Mailto(
       to: ['radzivilovaleriia@gmail.com'],
       subject: '',
@@ -80,9 +79,9 @@ class ContactsZip extends StatelessWidget {
     await launchUrl(Uri.parse('$mailtoLink'));
   }
 
-  MainText JustText(String additional_text) {
+  MainText JustText(String additionalText) {
     return MainText(
-      text: additional_text + textInfo,
+      text: additionalText + textInfo,
       levelBold: 0,
       paddingLevel: 0,
     );

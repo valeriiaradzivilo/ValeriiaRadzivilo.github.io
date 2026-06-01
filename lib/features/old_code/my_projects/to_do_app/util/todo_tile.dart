@@ -8,13 +8,12 @@ class ToDoTile extends StatelessWidget {
   Function(BuildContext)? deleteTask;
   double paddingSize;
   ToDoTile(
-      {Key? key,
+      {super.key,
       required this.taskName,
       required this.taskComplete,
       required this.onChanged,
       required this.deleteTask,
-      required this.paddingSize})
-      : super(key: key);
+      required this.paddingSize});
 
   @override
   Widget build(BuildContext context) {

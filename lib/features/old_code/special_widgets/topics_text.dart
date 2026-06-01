@@ -4,7 +4,7 @@ import 'package:sizer/sizer.dart';
 class TopicText extends StatelessWidget {
   final String text;
 
-  const TopicText({Key? key, required this.text}) : super(key: key);
+  const TopicText({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

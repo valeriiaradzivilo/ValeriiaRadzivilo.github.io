@@ -3,7 +3,7 @@ import 'package:sizer/sizer.dart';
 
 class MainText extends StatelessWidget {
   final String text;
-  const MainText({Key? key, required this.text}) : super(key: key);
+  const MainText({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

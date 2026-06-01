@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class TaskBlockMain extends StatelessWidget {
   final String name;
   final List? tasks;
-  const TaskBlockMain({Key? key, required this.name, required this.tasks})
-      : super(key: key);
+  const TaskBlockMain({super.key, required this.name, required this.tasks});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +35,7 @@ class TaskBlockMain extends StatelessWidget {
                     itemCount: tasks?.length,
                     itemBuilder: (context, index) {
                       return tasks?.elementAt(index)!=null? Text(tasks?.elementAt(index),
-                      overflow: TextOverflow.ellipsis,):const Text("nothing yet");
+                      overflow: TextOverflow.ellipsis,):const Text('nothing yet');
                     }):null,
               ),
             )

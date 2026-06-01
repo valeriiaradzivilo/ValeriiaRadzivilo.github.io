@@ -7,8 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 class LinkButton extends StatelessWidget {
   final String text;
   final String urlText;
-  const LinkButton({Key? key, required this.text, required this.urlText})
-      : super(key: key);
+  const LinkButton({super.key, required this.text, required this.urlText});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class LinkButton extends StatelessWidget {
         ),
         onPressed: () async {
           ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text("Opening profile")));
+              .showSnackBar(const SnackBar(content: Text('Opening profile')));
           if (kIsWeb) {
             html.window.open(urlText, '_blank');
           } else {

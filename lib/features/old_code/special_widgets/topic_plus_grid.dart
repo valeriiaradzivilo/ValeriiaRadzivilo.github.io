@@ -12,8 +12,7 @@ class TopicNGrid extends StatelessWidget {
   final int columnsAmount;
 
   const TopicNGrid(
-      {Key? key, required this.gridList, required this.columnsAmount})
-      : super(key: key);
+      {super.key, required this.gridList, required this.columnsAmount});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class TopicNGrid extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: TopicText(text: "< - - - -\n${gridList.elementAt(0)[0]}\n- - - - >"),
+                child: TopicText(text: '< - - - -\n${gridList.elementAt(0)[0]}\n- - - - >'),
               ),
               Expanded(
                 child: Padding(
@@ -40,23 +39,23 @@ class TopicNGrid extends StatelessWidget {
                       itemCount: gridList.length - 1,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: columnsAmount,
-                        childAspectRatio: gridList.elementAt(0)[2] == "big"
+                        childAspectRatio: gridList.elementAt(0)[2] == 'big'
                             ? (1.w / 1.h) * 1.4
                             : (1.w / 1.h) * 2.4,
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         index += 1;
                         return Padding(
-                            padding: EdgeInsets.all(2),
-                            child: gridList.elementAt(index)[2] == "link"
+                            padding: const EdgeInsets.all(2),
+                            child: gridList.elementAt(index)[2] == 'link'
                                 ? LinkButton(
                                     text: gridList.elementAt(index)[0],
                                     urlText: gridList.elementAt(index)[1])
-                                : gridList.elementAt(index)[2] == "project"
+                                : gridList.elementAt(index)[2] == 'project'
                                     ? ProjectButton(
                                         text: gridList.elementAt(index)[0],
                                         page: gridList.elementAt(index)[1])
-                                    : gridList.elementAt(index)[2] == "skill"
+                                    : gridList.elementAt(index)[2] == 'skill'
                                         ? MainText(
                                             text: gridList.elementAt(index)[1],
                                             levelBold: 1,

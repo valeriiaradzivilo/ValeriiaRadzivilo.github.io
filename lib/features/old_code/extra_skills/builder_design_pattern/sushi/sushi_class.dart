@@ -13,22 +13,20 @@ List<IngredientClass>?ingredients;
 
 void addIngredient(IngredientClass ingredient)
 {
-  if(ingredient!=null) {
-      ingredients?.add(ingredient);
+    ingredients?.add(ingredient);
     }
-  }
 
   String getAllergens()
   {
-    String allergies="";
+    String allergies='';
     ingredients?.forEach((element)
     {element.getAllergens()!=null?allergies+=element.getAllergens()!:null;});
     return allergies;
   }
   String getIngredients()
   {
-    String answer ="";
-    ingredients?.forEach((element) {answer+="${element.name!} ";});
+    String answer ='';
+    ingredients?.forEach((element) {answer+='${element.name!} ';});
     return answer;
   }
 

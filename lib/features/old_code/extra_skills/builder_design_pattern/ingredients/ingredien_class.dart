@@ -9,8 +9,8 @@ abstract class IngredientClass {
 
 
   String? getAllergens() {
-    String answer="";
-    allergens?.forEach((element) {answer+="$element ";});
+    String answer='';
+    allergens?.forEach((element) {answer+='$element ';});
     return answer;
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:portfolio/my_projects/to_do_app/data/database_blocks.dart';
 import 'package:portfolio/my_projects/to_do_app/pages/to_do_list_page.dart';
 import 'package:portfolio/my_projects/to_do_app/util/DialogueCheck.dart';
@@ -55,7 +55,7 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
 
   // opening box in hive and assigning database
   late ToDoBlocksDatabase db;
-  late var _myBox = null;
+  var _myBox;
 
   // text controller for input of name of box
   final _taskNameController = TextEditingController();
@@ -64,12 +64,10 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
   Future<String> openBox() async {
     await Hive.initFlutter();
     await Hive.openBox('ToDoAppBox');
-    if(_myBox==null) {
-      _myBox = Hive.box("ToDoAppBox");
-    }
+    _myBox ??= Hive.box('ToDoAppBox');
     db = ToDoBlocksDatabase();
 // load db or create inital data
-    if (_myBox.get("BLOCKNAMES") == null) {
+    if (_myBox.get('BLOCKNAMES') == null) {
       db.createInitialData();
     } else {
       db.loadData();
@@ -109,14 +107,14 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
   }
 
   // on save for dialogue createNewToDoListPage()
-  void saveNewToDo() async {
+  Future<void> saveNewToDo() async {
     if (_formKey.currentState?.validate() == true) {
       String textFromController = _taskNameController.text;
 
       db.blocksNames.add(_taskNameController.text);
 
       int indexBox = db.blocksNames.length - 1;
-      db.blocksFirstTasks?.add(["Nothing yet"]);
+      db.blocksFirstTasks?.add(['Nothing yet']);
       Navigator.of(context).pop();
       await Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ToDoListPage(
@@ -134,7 +132,7 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
   }
 
   // on long press block is deleted
-  void deleteBlock(int index) async {
+  Future<void> deleteBlock(int index) async {
     var box = await Hive.openBox(db.blocksNames.elementAt(index).toLowerCase());
     await box.clear();
     db.blocksNames.removeAt(index);
@@ -145,7 +143,7 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
   }
 
   // open to do list with this name
-  void openToDoList(String boxName, int index) async {
+  Future<void> openToDoList(String boxName, int index) async {
     await Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => ToDoListPage(
           boxName: boxName,
@@ -181,7 +179,7 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
             appBar: AppBar(
               centerTitle: true,
               title: const Text(
-                "Tasks for today",
+                'Tasks for today',
               ),
               elevation: 0,
               actions: [
@@ -195,7 +193,7 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
                               return const HelpBox();
                             });
                       },
-                      icon: Icon(Icons.help_center_outlined)),
+                      icon: const Icon(Icons.help_center_outlined)),
                 )
               ],
             ),

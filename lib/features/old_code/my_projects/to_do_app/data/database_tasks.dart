@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 
 class ToDoDatabase{
-  String name="";
+  String name='';
   List toDoList = [];
   List doneList = [];
   late final _myBox;
@@ -9,14 +9,14 @@ class ToDoDatabase{
 
   ToDoDatabase(String boxName) {
     _myBox = Hive.box(boxName);
-    if(_myBox.get("TODOLIST")!=null) {
-      toDoList = _myBox.get("TODOLIST");
+    if(_myBox.get('TODOLIST')!=null) {
+      toDoList = _myBox.get('TODOLIST');
     }
     else{
       toDoList = [];
     }
-    if(_myBox.get("DONELIST")!=null) {
-      doneList = _myBox.get("DONELIST");
+    if(_myBox.get('DONELIST')!=null) {
+      doneList = _myBox.get('DONELIST');
     }
     else{
       doneList = [];
@@ -26,20 +26,20 @@ class ToDoDatabase{
 
   void createInitialData()
   {
-    toDoList = [ ["Swipe left <=", false]];
-    doneList = [["This task is done", true]];
+    toDoList = [ ['Swipe left <=', false]];
+    doneList = [['This task is done', true]];
   }
 
   void loadData()
   {
-    toDoList = _myBox.get("TODOLIST");
-    doneList = _myBox.get("DONELIST");
+    toDoList = _myBox.get('TODOLIST');
+    doneList = _myBox.get('DONELIST');
   }
 
   void updateDb()
   {
-    _myBox.put("TODOLIST", toDoList);
-    _myBox.put("DONELIST", doneList);
+    _myBox.put('TODOLIST', toDoList);
+    _myBox.put('DONELIST', doneList);
   }
 
 

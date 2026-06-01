@@ -8,22 +8,22 @@ class ToDoBlocksDatabase{
   final _myBox= Hive.box('ToDoAppBox');
   void createInitialData()
   {
-    blocksNames = ["Hello"];
-    blocksFirstTasks = [["Make sandwich",
-      "Swipe left <="]];
+    blocksNames = ['Hello'];
+    blocksFirstTasks = [['Make sandwich',
+      'Swipe left <=']];
   }
 
   void loadData()
   {
-    blocksNames = _myBox.get("BLOCKNAMES");
-    blocksFirstTasks = _myBox.get("BLOCKSFIRSTTASKS");
+    blocksNames = _myBox.get('BLOCKNAMES');
+    blocksFirstTasks = _myBox.get('BLOCKSFIRSTTASKS');
 
   }
 
-  void updateDb()
+  Future<void> updateDb()
   async {
-    _myBox.put("BLOCKNAMES", blocksNames);
-    _myBox.put("BLOCKSFIRSTTASKS", blocksFirstTasks);
+    _myBox.put('BLOCKNAMES', blocksNames);
+    _myBox.put('BLOCKSFIRSTTASKS', blocksFirstTasks);
   }
 
 

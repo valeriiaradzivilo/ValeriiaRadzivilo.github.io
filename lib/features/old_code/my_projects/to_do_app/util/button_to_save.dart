@@ -9,7 +9,7 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(onPressed: onPressed,
-    color: name.toLowerCase()=="save"?Theme.of(context).primaryColor:Colors.grey,
+    color: name.toLowerCase()=='save'?Theme.of(context).primaryColor:Colors.grey,
     child: Text(name),);
   }
 }

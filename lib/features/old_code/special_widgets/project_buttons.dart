@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/special_widgets/main_text.dart';
-import 'package:sizer/sizer.dart';
 
 class ProjectButton extends StatelessWidget {
-  const ProjectButton({Key? key, required this.text, required this.page}) : super(key: key);
+  const ProjectButton({super.key, required this.text, required this.page});
   final String text;
   final StatefulWidget page;
 

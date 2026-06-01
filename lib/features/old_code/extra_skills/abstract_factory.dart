@@ -5,7 +5,7 @@ import 'package:portfolio/special_widgets/go_back_home_button.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
 class AbstractFactory extends StatefulWidget {
-  const AbstractFactory({Key? key}) : super(key: key);
+  const AbstractFactory({super.key});
   @override
   State<StatefulWidget> createState() => AbstractFactoryState();
 }
@@ -33,14 +33,14 @@ abstract class LoadingWidgetFactory {
 class AndroidLoadingWidgetFactory implements LoadingWidgetFactory {
   @override
   Widget createLoadingWidget() {
-    return Padding(
-      padding: const EdgeInsets.all(50.0),
+    return const Padding(
+      padding: EdgeInsets.all(50.0),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            Text("This is loading widget for Android"),
+          children: [
+            Text('This is loading widget for Android'),
             CircularProgressIndicator(),
           ],
         ),
@@ -52,10 +52,10 @@ class AndroidLoadingWidgetFactory implements LoadingWidgetFactory {
 class IosLoadingWidgetFactory implements LoadingWidgetFactory {
   @override
   Widget createLoadingWidget() {
-    return Center(
+    return const Center(
       child: Column(
-        children: const [
-          Text("This is loading widget for IOS"),
+        children: [
+          Text('This is loading widget for IOS'),
           CupertinoActivityIndicator(),
         ],
       ),
@@ -119,11 +119,12 @@ class _WebAbstrFactAppState extends State<WebAbstrFactApp> {
                   borderRadius: 12,
                   innerColor: const Color.fromARGB(255, 216, 177, 250),
                   outerColor: Colors.deepPurple,
-                  text: "Change to IOS look",
+                  text: 'Change to IOS look',
                   onSubmit: () {
                     setState(() {
                       isSwiped = !isSwiped;
                     });
+                    return null;
                   },
                 ),
               ),

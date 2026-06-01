@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'dart:math';
 
-import 'package:portfolio/main.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const SimpleCalendar());
 }
 
 class SimpleCalendar extends StatefulWidget {
-  const SimpleCalendar({Key? key}) : super(key: key);
+  const SimpleCalendar({super.key});
   @override
   State<StatefulWidget> createState() => SimpleCalendarState();
 }
@@ -18,17 +17,17 @@ class SimpleCalendarState extends State<SimpleCalendar> {
   bool front = true;
   List<String> cards = [];
   List<String> daysOfWeekShort = [
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fr",
-    "Sat",
-    "Sun"
+    'Mon',
+    'Tue',
+    'Wed',
+    'Thu',
+    'Fr',
+    'Sat',
+    'Sun'
   ];
   List<Map<String, String>> students = [];
   List studentsDaysValues = [];
-  var random = Random();
+  Random random = Random();
 
   double deviceHeight(BuildContext context) =>
       MediaQuery.of(context).size.height;
@@ -67,27 +66,27 @@ class SimpleCalendarState extends State<SimpleCalendar> {
                     });
                   },
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(5, 5, 5, 0),
                     child: Container(
                       height: MediaQuery.of(context).size.height / 4,
                       width: MediaQuery.of(context).size.width - 10,
                       decoration: BoxDecoration(
-                        color: Color(0xFF9F00DE),
+                        color: const Color(0xFF9F00DE),
                         borderRadius: BorderRadius.circular(20),
                         shape: BoxShape.rectangle,
                       ),
                       child: Center(
                         child: front
                             ? Padding(
-                                padding: EdgeInsets.all(15),
+                                padding: const EdgeInsets.all(15),
                                 child: Column(
                                   children: [
                                     const Text(
-                                      "Press on card to add new card ->",
+                                      'Press on card to add new card ->',
                                       style: TextStyle(fontSize: 10),
                                     ),
                                     const Text(
-                                      "Your cards: ",
+                                      'Your cards: ',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 30),
@@ -101,7 +100,7 @@ class SimpleCalendarState extends State<SimpleCalendar> {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(const SnackBar(
                                                     content: Text(
-                                                        "Card is copied to clipboard")));
+                                                        'Card is copied to clipboard')));
                                           });
                                         },
                                         child: Padding(
@@ -133,8 +132,7 @@ class SimpleCalendarState extends State<SimpleCalendar> {
                                   ),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      primary: Color(0xff006400), // background
-                                      onPrimary: Colors.white, // foreground
+                                      foregroundColor: Colors.white, backgroundColor: const Color(0xff006400), // foreground
                                     ),
                                     onPressed: () {
                                       setState(() {
@@ -143,11 +141,11 @@ class SimpleCalendarState extends State<SimpleCalendar> {
                                             : ScaffoldMessenger.of(context)
                                                 .showSnackBar(const SnackBar(
                                                     content: Text(
-                                                        "You can not add more than 4 cards")));
+                                                        'You can not add more than 4 cards')));
                                         front = true;
                                       });
                                     },
-                                    child: Text('Add card'),
+                                    child: const Text('Add card'),
                                   ),
                                 ]),
                               ),
@@ -187,7 +185,7 @@ class SimpleCalendarState extends State<SimpleCalendar> {
                           top: deviceHeight(context) / 100,
                           left: deviceWidth(context) / 70,
                         ),
-                        child: Container(
+                        child: SizedBox(
                           width: deviceWidth(context) / 8,
                           height: 20,
                         ),
@@ -215,7 +213,7 @@ class SimpleCalendarState extends State<SimpleCalendar> {
                                     child: Text(
                                       students.elementAt(j).values.elementAt(0),
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(color: Colors.black),
+                                      style: const TextStyle(color: Colors.black),
                                     ),
                                   ),
                                 ),
@@ -290,7 +288,7 @@ class AddEvent extends StatefulWidget {
 }
 
 class _AddEventState extends State<AddEvent> {
-  String _selectedValue = "Monday";
+  String _selectedValue = 'Monday';
   int dayNumber = 0;
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
-import 'package:portfolio/my_projects/api_project/models/comments.dart';
 import 'package:http/http.dart' as http;
+import 'package:portfolio/my_projects/api_project/models/comments.dart';
 class RemoteService{
   Future<List<Comment>?> getComments()async
   {
@@ -11,6 +11,7 @@ class RemoteService{
           var json = response.body;
           return commentFromJson(json);
         }
+      return null;
   }
 
 

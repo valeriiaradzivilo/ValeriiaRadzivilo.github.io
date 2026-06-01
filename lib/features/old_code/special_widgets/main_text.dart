@@ -6,7 +6,7 @@ class MainText extends StatelessWidget {
 
   final int levelBold;
   final double paddingLevel;
-  const MainText({Key? key, required this.text,required this.levelBold, required this.paddingLevel}) : super(key: key);
+  const MainText({super.key, required this.text,required this.levelBold, required this.paddingLevel});
 
   @override
   Widget build(BuildContext context) {

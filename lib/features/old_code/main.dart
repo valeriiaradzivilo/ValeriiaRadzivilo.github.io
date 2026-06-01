@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ['Projects', null, 'project'],
     ['Calendar for online teachers', const SimpleCalendar(), 'project'],
     ['REST API work', const ApiWorkPage(), 'project'],
-    ['Calculator', Calculator(), 'project'],
+    ['Calculator', const Calculator(), 'project'],
     ['To Doer', const ToDoAppPage(), 'project'],
     ['Design Pattern: Abstract Factory', const AbstractFactory(), 'project'],
     ['Design Pattern: Builder', const BuilderAppHomePage(), 'project'],

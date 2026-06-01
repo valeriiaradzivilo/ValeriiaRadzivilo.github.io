@@ -1,11 +1,12 @@
+import 'dart:math';
+
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:portfolio/my_projects/to_do_app/data/database_tasks.dart';
 import 'package:portfolio/my_projects/to_do_app/util/dialogue_new_box.dart';
 import 'package:portfolio/my_projects/to_do_app/util/my_text.dart';
 import 'package:portfolio/my_projects/to_do_app/util/todo_tile.dart';
-import 'package:confetti/confetti.dart';
-import 'dart:math';
 
 
 class ToDoListPage extends StatefulWidget {
@@ -34,17 +35,17 @@ class _ToDoListPageState extends State<ToDoListPage> {
   // text controller for new tasks
   final _controller = TextEditingController();
 
-  var box = null;
+  var box;
 
   Future<String> openBoxMy() async {
     if (box == null) {
       Hive.initFlutter(); // Initialize Hive
       box = await Hive.openBox(widget.boxName); // Open the box
-      _myBox = await Hive.box(widget.boxName);
+      _myBox = Hive.box(widget.boxName);
       db = ToDoDatabase(widget.boxName);
     }
 
-    if (_myBox.get("TODOLIST") == null) {
+    if (_myBox.get('TODOLIST') == null) {
       db.createInitialData();
     } else {
       db.loadData();
@@ -89,7 +90,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
     widget.blocksFirstTasks?.removeAt(widget.indexBox);
     if(db.toDoList.length>1) {
       widget.blocksFirstTasks?.insert(
-          widget.indexBox, [db.toDoList.elementAt(0)[0],db.toDoList.elementAt(1)[0],"..."]);
+          widget.indexBox, [db.toDoList.elementAt(0)[0],db.toDoList.elementAt(1)[0],'...']);
     }
     else if(db.toDoList.isNotEmpty)
     {
@@ -98,7 +99,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
     }
     else{
       widget.blocksFirstTasks?.insert(
-          widget.indexBox, ["Nothing to do"]);
+          widget.indexBox, ['Nothing to do']);
     }
   }
 
@@ -120,7 +121,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
     widget.blocksFirstTasks?.removeAt(widget.indexBox);
     if(db.toDoList.length>1) {
       widget.blocksFirstTasks?.insert(
-          widget.indexBox, [db.toDoList.elementAt(0)[0],db.toDoList.elementAt(1)[0],"..."]);
+          widget.indexBox, [db.toDoList.elementAt(0)[0],db.toDoList.elementAt(1)[0],'...']);
     }
     else if(db.toDoList.isNotEmpty)
       {
@@ -129,7 +130,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
       }
     else{
       widget.blocksFirstTasks?.insert(
-          widget.indexBox, ["Nothing to do"]);
+          widget.indexBox, ['Nothing to do']);
     }
   }
 
@@ -146,7 +147,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
     widget.blocksFirstTasks?.removeAt(widget.indexBox);
     if(db.toDoList.length>1) {
       widget.blocksFirstTasks?.insert(
-          widget.indexBox, [db.toDoList.elementAt(0)[0],db.toDoList.elementAt(1)[0],"..."]);
+          widget.indexBox, [db.toDoList.elementAt(0)[0],db.toDoList.elementAt(1)[0],'...']);
     }
     else if(db.toDoList.isNotEmpty)
     {
@@ -155,7 +156,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
     }
     else{
       widget.blocksFirstTasks?.insert(
-          widget.indexBox, ["Nothing to do"]);
+          widget.indexBox, ['Nothing to do']);
     }
   }
 
@@ -240,7 +241,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                         ),
                       ),
                       const SliverToBoxAdapter(
-                        child: MainText(text: "To do:"),
+                        child: MainText(text: 'To do:'),
                       ),
                       SliverPadding(
                         padding: const EdgeInsets.all(4.0),
@@ -262,7 +263,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                         ),
                       ),
                       const SliverToBoxAdapter(
-                        child: MainText(text: "Done:"),
+                        child: MainText(text: 'Done:'),
                       ),
                       SliverPadding(
                         padding: const EdgeInsets.all(4.0),
@@ -288,11 +289,11 @@ class _ToDoListPageState extends State<ToDoListPage> {
                   MainText(
                       text: percentDone == 1
                           ? "You've done great job today!"
-                          : ""),
+                          : ''),
                   MainText(
                       text: percentDone.isNaN
                           ? "You haven't planned anything yet."
-                          : "You made: ${(percentDone* 100).toInt() }% of work you planned."),
+                          : 'You made: ${(percentDone* 100).toInt() }% of work you planned.'),
 
                 ];
               } else if (snapshot.hasError) {

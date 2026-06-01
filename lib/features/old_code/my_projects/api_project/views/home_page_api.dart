@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/my_projects/api_project/models/comments.dart';
 import 'package:portfolio/my_projects/api_project/services/remote_service.dart';
 class ApiWorkPage extends StatefulWidget {
-  const ApiWorkPage({Key? key}) : super(key: key);
+  const ApiWorkPage({super.key});
 
   @override
   State<ApiWorkPage> createState() => _ApiWorkPageState();
@@ -13,7 +13,7 @@ class ApiWorkPage extends StatefulWidget {
 class _ApiWorkPageState extends State<ApiWorkPage> {
   List<Comment>? comments;
 
-  var isLoaded = false;
+  bool isLoaded = false;
 
   @override
   void initState(){
@@ -23,7 +23,7 @@ class _ApiWorkPageState extends State<ApiWorkPage> {
     getData();
   }
 
-  getData()
+  Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> getData()
   async{
     comments = await RemoteService().getComments();
     if(comments!=null)
@@ -61,7 +61,7 @@ class _ApiWorkPageState extends State<ApiWorkPage> {
                     color: Color.fromARGB(random.nextInt(255), random.nextInt(255), random.nextInt(255), random.nextInt(255)),
                   ),
                 ),
-                SizedBox(width: 10,),
+                const SizedBox(width: 10,),
                 Expanded(
                   child: Column(
                     children: [
@@ -73,12 +73,12 @@ class _ApiWorkPageState extends State<ApiWorkPage> {
                         fontWeight: FontWeight.bold),
                       ),
                       Text(
-                      comments![index].body ?? "no comment provided",
+                      comments![index].body ?? 'no comment provided',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(fontSize: 24),),
 
-                      const Text("Source: https://jsonplaceholder.typicode.com/",
+                      const Text('Source: https://jsonplaceholder.typicode.com/',
                       style: TextStyle(color: Colors.redAccent,
                       fontSize: 14),
                       ),
