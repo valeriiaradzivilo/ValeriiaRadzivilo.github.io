@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../../shared/theme/text_styles.dart';
+import '../data/models/general_info_model.dart';
 import 'wall_picture.dart';
 
 class LanguagesCard extends StatelessWidget {
-  const LanguagesCard({super.key});
+  final List<LanguageEntry> languages;
+
+  const LanguagesCard({super.key, required this.languages});
 
   @override
   Widget build(BuildContext context) {
@@ -19,36 +23,26 @@ class LanguagesCard extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: const Text(
-          'Languages',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+        child: Text('Languages', style: AppTextStyles.cardHeading(28)),
       ),
-      caption: const Column(
-        children: [
-          _LangRow(language: 'Ukrainian', level: 'Native', progress: 1.0),
-          SizedBox(height: 12),
-          _LangRow(language: 'English', level: 'Professional', progress: 0.85),
-        ],
+      caption: Column(
+        children: languages
+            .map(
+              (entry) => Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: _LangRow(entry: entry),
+              ),
+            )
+            .toList(),
       ),
     );
   }
 }
 
 class _LangRow extends StatelessWidget {
-  final String language;
-  final String level;
-  final double progress;
+  final LanguageEntry entry;
 
-  const _LangRow({
-    required this.language,
-    required this.level,
-    required this.progress,
-  });
+  const _LangRow({required this.entry});
 
   @override
   Widget build(BuildContext context) {
@@ -58,15 +52,21 @@ class _LangRow extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(language, style: wallLabel(16, weight: FontWeight.bold)),
-            Text(level, style: wallLabel(13, color: const Color(0xFF718096))),
+            Text(
+              entry.language,
+              style: AppTextStyles.label(16, weight: FontWeight.bold),
+            ),
+            Text(
+              entry.level,
+              style: AppTextStyles.label(13, color: const Color(0xFF718096)),
+            ),
           ],
         ),
         const SizedBox(height: 4),
         ClipRRect(
           borderRadius: BorderRadius.circular(4),
           child: LinearProgressIndicator(
-            value: progress,
+            value: entry.progress,
             backgroundColor: const Color(0xFFE2E8F0),
             valueColor:
                 const AlwaysStoppedAnimation<Color>(Color(0xFF11998E)),

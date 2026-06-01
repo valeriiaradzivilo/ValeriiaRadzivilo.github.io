@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../../shared/theme/text_styles.dart';
 import 'wall_picture.dart';
 
 class AboutCard extends StatelessWidget {
-  const AboutCard({super.key});
+  final String about;
+
+  const AboutCard({super.key, required this.about});
 
   @override
   Widget build(BuildContext context) {
@@ -19,30 +22,11 @@ class AboutCard extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: const Text(
-          'About Me',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+        child: Text('About Me', style: AppTextStyles.cardHeading(32)),
       ),
-      caption: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Hi! I'm a passionate Flutter & Dart developer who loves crafting "
-            'beautiful, performant cross-platform apps for Android, iOS, and Web.',
-            style: wallLabel(15, color: const Color(0xFF4A5568)),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'I enjoy clean architecture, BLoC state management, and turning '
-            'design ideas into polished products.',
-            style: wallLabel(15, color: const Color(0xFF4A5568)),
-          ),
-        ],
+      caption: Text(
+        about,
+        style: AppTextStyles.label(15, color: const Color(0xFF4A5568)),
       ),
     );
   }

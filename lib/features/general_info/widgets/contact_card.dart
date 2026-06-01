@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../shared/theme/text_styles.dart';
+import '../data/models/general_info_model.dart';
 import 'wall_picture.dart';
 
 class ContactCard extends StatelessWidget {
-  const ContactCard({super.key});
+  final ContactInfo contact;
+
+  const ContactCard({super.key, required this.contact});
 
   Future<void> _open(String url) async {
     await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
@@ -24,37 +28,29 @@ class ContactCard extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: const Text(
-          'Find Me',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+        child: Text('Find Me', style: AppTextStyles.cardHeading(28)),
       ),
       caption: Column(
         children: [
           _LinkButton(
-            label: 'lerazip32@gmail.com',
+            label: contact.email,
             icon: Icons.email_outlined,
             color: const Color(0xFFE53E3E),
-            onTap: () => _open('mailto:lerazip32@gmail.com'),
+            onTap: () => _open('mailto:${contact.email}'),
           ),
           const SizedBox(height: 8),
           _LinkButton(
             label: 'LinkedIn',
             icon: Icons.person_outline,
             color: const Color(0xFF0077B5),
-            onTap: () =>
-                _open('https://www.linkedin.com/in/valeriia-radzivilo/'),
+            onTap: () => _open(contact.linkedIn),
           ),
           const SizedBox(height: 8),
           _LinkButton(
             label: 'GitHub',
             icon: Icons.code,
             color: const Color(0xFF2D3748),
-            onTap: () => _open('https://github.com/ValeriiaRadzivilo'),
+            onTap: () => _open(contact.gitHub),
           ),
         ],
       ),
@@ -94,10 +90,10 @@ class _LinkButton extends StatelessWidget {
             Expanded(
               child: Text(
                 label,
-                style: TextStyle(
-                  fontSize: 15,
+                style: AppTextStyles.label(
+                  15,
                   color: color,
-                  fontWeight: FontWeight.w600,
+                  weight: FontWeight.w600,
                 ),
                 overflow: TextOverflow.ellipsis,
               ),

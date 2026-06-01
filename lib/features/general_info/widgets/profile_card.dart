@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
+import '../../../../shared/theme/text_styles.dart';
 import 'wall_picture.dart';
 
 class ProfileCard extends StatelessWidget {
-  const ProfileCard({super.key});
+  final String name;
+  final String title;
+  final String location;
+
+  const ProfileCard({
+    super.key,
+    required this.name,
+    required this.title,
+    required this.location,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +43,15 @@ class ProfileCard extends StatelessWidget {
       caption: Column(
         children: [
           Text(
-            'Valeriia Radzivilo',
+            name,
             textAlign: TextAlign.center,
-            style: wallLabel(22, weight: FontWeight.bold),
+            style: AppTextStyles.label(22, weight: FontWeight.bold),
           ),
           const SizedBox(height: 2),
           Text(
-            'Flutter Developer  •  Ukraine',
+            '$title  •  $location',
             textAlign: TextAlign.center,
-            style: wallLabel(15, color: const Color(0xFF718096)),
+            style: AppTextStyles.label(15, color: const Color(0xFF718096)),
           ),
         ],
       ),

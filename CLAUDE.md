@@ -46,11 +46,19 @@ lib/
 
 ### Theme
 - The global theme is defined inline in `MaterialApp` inside `main.dart`. Keep color and style constants there rather than scattering `Color(0x...)` literals across widgets.
-- Reuse text styles via `Theme.of(context).textTheme` roles. Avoid ad-hoc `TextStyle(...)` literals inside widgets.
+- Reuse text styles via `Theme.of(context).textTheme` roles. For custom text styles not covered by the theme, use the `AppTextStyles` class in `lib/shared/theme/text_styles.dart`. Do not write ad-hoc `TextStyle(...)` literals inside widgets.
+- Do **not** use `google_fonts` — use system fonts via plain `TextStyle` and `AppTextStyles`.
 
 ### Handling old / legacy code that causes errors
 - **If any existing code (in `lib/my_projects/`, `lib/extra_skills/`, or `lib/special_widgets/`) causes a compile or analysis error, comment it out** with a `// TODO: migrate to feature architecture` note rather than deleting it or refactoring it beyond the minimum needed to make the app compile.
 - Never delete legacy code outright — comment it out so it can be reviewed and migrated later.
+
+### Data layer convention
+- Each feature's data layer lives in `lib/features/<name>/data/`.
+- Define an **`abstract interface class`** (e.g. `FooRepository`) in `<name>_repository.dart`.
+- Provide a `final class FooRepositoryImpl implements FooRepository` in `<name>_repository_impl.dart`.
+- Data models live under `data/models/`. Keep models pure — no business logic, no UI widgets as fields (use `Color` from Flutter only when the value is purely presentational and never leaves the feature).
+- The Cubit/BLoC receives the repository via constructor injection. Wire the concrete impl in `main.dart` inside a `BlocProvider`.
 
 ### Adding a new portfolio project
 1. Create a feature folder at `lib/features/<name>/` with `bloc/`, `data/`, `view/`, and `widgets/` sub-folders as needed.

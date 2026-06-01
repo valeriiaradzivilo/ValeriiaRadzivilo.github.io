@@ -2,13 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-TextStyle wallLabel(double size, {Color? color, FontWeight? weight}) =>
-    TextStyle(
-      fontSize: size,
-      color: color ?? const Color(0xFF2D3748),
-      fontWeight: weight ?? FontWeight.normal,
-    );
-
 class WallPicture extends StatelessWidget {
   final Widget photo;
   final Widget caption;

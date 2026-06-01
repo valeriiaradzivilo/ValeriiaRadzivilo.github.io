@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../../shared/theme/text_styles.dart';
+import '../data/models/general_info_model.dart';
 import 'wall_picture.dart';
 
 class EducationCard extends StatelessWidget {
-  const EducationCard({super.key});
+  final EducationEntry education;
+
+  const EducationCard({super.key, required this.education});
 
   @override
   Widget build(BuildContext context) {
@@ -19,31 +23,24 @@ class EducationCard extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: const Text(
-          'Education',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+        child: Text('Education', style: AppTextStyles.cardHeading(28)),
       ),
       caption: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Computer Science',
-            style: wallLabel(16, weight: FontWeight.bold),
+            education.program,
+            style: AppTextStyles.label(16, weight: FontWeight.bold),
           ),
           const SizedBox(height: 2),
           Text(
-            "Bachelor's Degree",
-            style: wallLabel(14, color: const Color(0xFF718096)),
+            education.degree,
+            style: AppTextStyles.label(14, color: const Color(0xFF718096)),
           ),
           const SizedBox(height: 2),
           Text(
-            '2018 – 2022',
-            style: wallLabel(13, color: const Color(0xFF9B59B6)),
+            education.period,
+            style: AppTextStyles.label(13, color: const Color(0xFF9B59B6)),
           ),
         ],
       ),

@@ -1,52 +1,32 @@
 import 'package:flutter/material.dart';
 
+import '../../../../shared/theme/text_styles.dart';
+import '../data/models/general_info_model.dart';
 import 'wall_picture.dart';
 
 class ExperienceCard extends StatelessWidget {
-  final String title;
-  final String place;
-  final String period;
-  final String description;
-  final Color color;
-  final double rotation;
+  final ExperienceEntry experience;
 
-  const ExperienceCard({
-    super.key,
-    required this.title,
-    required this.place,
-    required this.period,
-    required this.description,
-    required this.color,
-    this.rotation = 0,
-  });
+  const ExperienceCard({super.key, required this.experience});
 
   @override
   Widget build(BuildContext context) {
+    final c = experience.color;
     return WallPicture(
-      rotation: rotation,
-      pinColor: color,
+      rotation: experience.rotation,
+      pinColor: c,
       photo: Container(
         padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(color: color),
+        decoration: BoxDecoration(color: c),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Experience',
-              style: TextStyle(
-                fontSize: 13,
-                color: Colors.white.withValues(alpha: 0.7),
-              ),
+              style: AppTextStyles.fadedOnColor(13, c),
             ),
             const SizedBox(height: 4),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
+            Text(experience.title, style: AppTextStyles.cardHeading(22)),
             const SizedBox(height: 4),
             Row(
               children: [
@@ -57,11 +37,8 @@ class ExperienceCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  '$place  |  $period',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white.withValues(alpha: 0.9),
-                  ),
+                  '${experience.place}  |  ${experience.period}',
+                  style: AppTextStyles.fadedOnColor(14, c),
                 ),
               ],
             ),
@@ -69,8 +46,8 @@ class ExperienceCard extends StatelessWidget {
         ),
       ),
       caption: Text(
-        description,
-        style: wallLabel(14, color: const Color(0xFF4A5568)),
+        experience.description,
+        style: AppTextStyles.label(14, color: const Color(0xFF4A5568)),
       ),
     );
   }
