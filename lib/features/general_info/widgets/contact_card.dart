@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../shared/theme/text_styles.dart';
-import '../data/models/general_info_model.dart';
+import '../../../data/models/general_info_model.dart';
 import 'wall_picture.dart';
 
 class ContactCard extends StatelessWidget {

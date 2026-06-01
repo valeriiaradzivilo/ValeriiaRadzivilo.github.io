@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../shared/theme/text_styles.dart';
-import '../data/models/general_info_model.dart';
+import '../../../data/models/general_info_model.dart';
 import 'wall_picture.dart';
 
 class SkillsCard extends StatelessWidget {

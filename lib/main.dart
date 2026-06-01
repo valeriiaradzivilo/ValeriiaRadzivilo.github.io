@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'features/general_info/bloc/general_info_cubit.dart';
-import 'features/general_info/data/general_info_repository_impl.dart';
-import 'features/general_info/ui/general_info.dart';
+import 'package:portfolio/features/home_page/ui/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,10 +18,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: BlocProvider(
-        create: (_) => GeneralInfoCubit(const GeneralInfoRepositoryImpl()),
-        child: const GeneralInfo(),
-      ),
+      home: const HomePage(),
     );
   }
 }
