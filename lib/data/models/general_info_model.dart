@@ -34,9 +34,8 @@ class ExperienceEntry {
   final String title;
   final String place;
   final String period;
-  final String description;
+  final List<String> description;
   final Color color;
-  final double rotation;
 
   const ExperienceEntry({
     required this.title,
@@ -44,7 +43,6 @@ class ExperienceEntry {
     required this.period,
     required this.description,
     required this.color,
-    this.rotation = 0,
   });
 }
 

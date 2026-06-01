@@ -24,7 +24,7 @@ class GeneralInfo extends StatelessWidget {
         ),
         AboutCard(about: info.about),
         SkillsCard(skills: info.skills),
-        ...info.experiences.map((e) => ExperienceCard(experience: e)),
+        ExperienceCard(experiences: info.experiences),
         EducationCard(education: info.education),
         LanguagesCard(languages: info.languages),
         ContactCard(contact: info.contact),
