@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/features/old_code/main.dart';
-import 'package:sizer/sizer.dart';
+import 'package:portfolio/features/general_info/ui/general_info.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,18 +12,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(
-      builder: (context, orientation, deviceType) {
-        return MaterialApp(
-          title: 'Valeriia Radzivilo Portfolio',
-          theme: ThemeData(
-            primarySwatch: Colors.deepPurple,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-          debugShowCheckedModeBanner: false,
-          home: const HomePage(),
-        );
-      },
+    return MaterialApp(
+      title: 'Valeriia Radzivilo Portfolio',
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const GeneralInfo(),
     );
   }
 }

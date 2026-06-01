@@ -1,7 +1,7 @@
 # Portfolio Project Instructions
 
 This Flutter web portfolio uses:
-- **Provider** for local state management where needed
+- **BLoC / Cubit** for state management
 - **go_router** for navigation between pages
 - **FVM** for a consistent Flutter SDK toolchain
 - a **Makefile** for fast common commands and workflows
@@ -9,18 +9,36 @@ This Flutter web portfolio uses:
 
 ## Architecture
 
-### Folder layout
+### Feature-first folder layout
+Each feature is a self-contained module under `lib/features/<feature_name>/` with its own layers:
+
+```
+lib/
+  features/
+    <feature_name>/
+      bloc/          # BLoC or Cubit + State + Event classes
+      data/          # repositories, data sources, models
+      view/          # pages and screens
+      widgets/       # feature-local widgets
+  shared/
+    widgets/         # widgets reused across features (replaces lib/special_widgets/)
+    theme/           # color constants, text styles
+  main.dart          # app entry point: MaterialApp, theme, router
+```
+
 - `lib/main.dart` — app entry point. Builds the root `MaterialApp` with theme and routing.
-- `lib/my_projects/` — self-contained mini-app features shown as portfolio entries (e.g. `calculator.dart`, `calendar.dart`, `to_do_app/`).
-- `lib/extra_skills/` — design-pattern demos (e.g. `abstract_factory.dart`, `builder_design_pattern/`).
-- `lib/special_widgets/` — reusable widgets shared across the portfolio UI (e.g. `contact_widget.dart`, `project_buttons.dart`).
-- Name files in `snake_case` (e.g. `home_page_api.dart`, `todo_tile.dart`).
-- Do not import from one feature folder into another. Promote shared code into `lib/special_widgets/` instead.
+- `lib/my_projects/` — legacy mini-app features (kept for reference; migrate to `lib/features/` on touch).
+- `lib/extra_skills/` — design-pattern demos (kept for reference; migrate to `lib/features/` on touch).
+- `lib/special_widgets/` — legacy shared widgets (kept for reference; new shared code goes in `lib/shared/widgets/`).
+- Name files in `snake_case` (e.g. `home_page_bloc.dart`, `todo_tile.dart`).
+- Do not import from one feature folder into another. Promote shared code into `lib/shared/widgets/` instead.
 
 ### State management
-- Use `StatefulWidget` + `setState` for simple local UI state.
-- Use `Provider` only where state must be shared across widget subtrees. Do not introduce BLoC or Cubit.
-- Keep business logic out of `build` methods — extract it into methods or `StatefulWidget` state classes.
+- Use **BLoC** for complex state with distinct events, or **Cubit** for simpler state without explicit events.
+- Do **not** use `Provider` or introduce new `StatefulWidget` + `setState` for shared state.
+- `StatefulWidget` + `setState` is acceptable only for purely local, ephemeral UI state (e.g. animation controllers, focus nodes) that never needs to be shared.
+- Keep all business logic inside the BLoC/Cubit — never in `build` methods or widget classes.
+- Expose state to the UI via `BlocBuilder`, `BlocListener`, or `BlocConsumer`.
 
 ### Navigation
 - Route configuration is driven by `go_router`. Add new routes in the router definition in `main.dart`.
@@ -30,19 +48,23 @@ This Flutter web portfolio uses:
 - The global theme is defined inline in `MaterialApp` inside `main.dart`. Keep color and style constants there rather than scattering `Color(0x...)` literals across widgets.
 - Reuse text styles via `Theme.of(context).textTheme` roles. Avoid ad-hoc `TextStyle(...)` literals inside widgets.
 
+### Handling old / legacy code that causes errors
+- **If any existing code (in `lib/my_projects/`, `lib/extra_skills/`, or `lib/special_widgets/`) causes a compile or analysis error, comment it out** with a `// TODO: migrate to feature architecture` note rather than deleting it or refactoring it beyond the minimum needed to make the app compile.
+- Never delete legacy code outright — comment it out so it can be reviewed and migrated later.
+
 ### Adding a new portfolio project
-1. Create a self-contained widget (or folder) under `lib/my_projects/<name>/`.
+1. Create a feature folder at `lib/features/<name>/` with `bloc/`, `data/`, `view/`, and `widgets/` sub-folders as needed.
 2. Add a button entry to the `projectButtonsList` in `lib/main.dart`.
-3. If it requires a new route, register it in the `go_router` config.
+3. Register its route in the `go_router` config in `main.dart`.
 4. Do not import the new feature from any other feature folder.
 
 ### Adding a new design-pattern demo
-1. Create a self-contained widget under `lib/extra_skills/<pattern_name>/`.
+1. Create a feature folder at `lib/features/<pattern_name>/` following the same structure.
 2. Register it in the relevant list in `lib/main.dart`.
 
 ## Pubspec
 - Keep `dependencies:` and `dev_dependencies:` sorted **alphabetically (A → Z)**.
-- Use `fvm flutter pub get` (via `make pubget`) — never a global `flutter` command.
+- Use `fvm flutter pub get` (via `make get`) — never a global `flutter` command.
 
 ## Workflow
 - Use `fvm flutter` instead of a global `flutter` command.
@@ -51,7 +73,7 @@ This Flutter web portfolio uses:
 
 ## Recommended commands
 - `make install` — install FVM SDK and fetch packages
-- `make pubget` — fetch packages
+- `make get` — fetch packages
 - `make run` — run the app in Chrome
 - `make analyze` — run static analysis
 - `make test` — run unit/widget tests

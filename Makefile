@@ -1,12 +1,12 @@
 FVM := fvm flutter
 
-.PHONY: install pubget run analyze test build-web
+.PHONY: install get run analyze test build-web
 
 install:
 	fvm install
 	$(FVM) pub get
 
-pubget:
+get:
 	$(FVM) pub get
 
 run:
