@@ -13,8 +13,7 @@ linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
   # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at
-  # https://dart-lang.github.io/linter/lints/index.html.
+  # and their documentation is published at https://dart.dev/lints.
   #
   # Instead of disabling a lint rule for the entire project in the
   # section below, it can also be suppressed for a single line of code
@@ -22,8 +21,67 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    # Error Rules
+    avoid_dynamic_calls: true # Avoid method calls or property accesses on a “dynamic” target
+    avoid_type_to_string: true # Avoid .toString() in production code since results may be minified
+    avoid_unnecessary_containers: true # Avoid wrapping widgets in unnecessary containers.
+    cancel_subscriptions: true # Cancel instances of dart.async.StreamSubscription
+    close_sinks: true # Close instances of dart.core.Sink
+    collection_methods_unrelated_type: true # Invocation of various collection methods with arguments of unrelated types.
+    # Style Rules
+    always_declare_return_types: true # Declare method return types
+    avoid_multiple_declarations_per_line: true # Don't declare multiple variables on a single line
+    avoid_unused_constructor_parameters: true # Avoid defining unused parameters in constructors
+    avoid_void_async: true # Avoid async functions that return void
+    directives_ordering: true # Adhere to Effective Dart Guide directives sorting conventions
+    eol_at_end_of_file: true # Put a single newline at end of file
+    # parameter_assignments: true # Don't reassign references to parameters of functions or methods.
+    prefer_const_constructors: true # Prefer const with constant constructors
+    prefer_null_aware_method_calls: true # Prefer null aware method calls
+    prefer_single_quotes: true # Only use double quotes for strings containing single quotes
+    require_trailing_commas: true # DO use trailing commas for all function calls and declarations unless the function call or definition, from the start of the function name up to the closing parenthesis, fits in a single line.
+    sort_child_properties_last: true # Sort child properties last in widget instance creations
+    sort_unnamed_constructors_first: true # DO sort unnamed constructor declarations first, before named ones
+    sized_box_for_whitespace: true # Use SizedBox to add whitespace to a layout
+    type_annotate_public_apis: true # Type annotate public APIs
+    unnecessary_await_in_return: true # Unnecessary await keyword in return
+    sort_pub_dependencies: true # Sort pub dependencies
+    avoid_print: true
+    library_private_types_in_public_api: false # Don't use private types in public APIs
+    avoid_single_cascade_in_expression_statements: true
+
+#TODO: enable more rules gradually
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  errors:
+    # avoid_dynamic_calls: error
+    avoid_type_to_string: error
+    avoid_unnecessary_containers: error
+    cancel_subscriptions: error
+    close_sinks: error
+    collection_methods_unrelated_type: error
+    always_declare_return_types: error
+    avoid_multiple_declarations_per_line: error
+    avoid_unused_constructor_parameters: warning
+    avoid_void_async: error
+    directives_ordering: error
+    eol_at_end_of_file: warning
+    parameter_assignments: warning
+    prefer_const_constructors: error
+    prefer_null_aware_method_calls: error
+    prefer_single_quotes: error
+    require_trailing_commas: warning
+    sort_child_properties_last: warning
+    sort_unnamed_constructors_first: error
+    # type_annotate_public_apis: error
+    unnecessary_await_in_return: error
+    sort_pub_dependencies: error
+    sized_box_for_whitespace: error
+    undefined_named_parameter: warning
+    extra_positional_arguments: warning
+    deprecated_member_use_from_same_package: warning
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

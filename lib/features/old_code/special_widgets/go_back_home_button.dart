@@ -11,11 +11,13 @@ class goBackHome extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton.icon(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.deepPurple,
-        ),
-        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage())),
-        icon:const Icon(Icons.arrow_circle_left_outlined),
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+        onPressed:
+            () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            ),
+        icon: const Icon(Icons.arrow_circle_left_outlined),
         label: const Text('Go back to portfolio'),
       ),
     );

@@ -42,3 +42,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# FVM — local Flutter SDK symlink (not needed in version control)
+
+# FVM Version Cache
+.fvm/
