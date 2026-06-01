@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 
+import '../../../../l10n/app_locale.dart';
 import '../../../../shared/theme/text_styles.dart';
 import '../../../data/models/general_info_model.dart';
 import 'wall_picture.dart';
@@ -19,7 +21,10 @@ class ExperienceCard extends StatelessWidget {
       photo: Container(
         padding: const EdgeInsets.all(16),
         decoration: const BoxDecoration(color: _headerColor),
-        child: Text('Experience', style: AppTextStyles.cardHeading(24)),
+        child: Text(
+          AppLocale.experience.getString(context),
+          style: AppTextStyles.cardHeading(24),
+        ),
       ),
       caption: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,22 +72,15 @@ class _ExperienceRow extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (entry.place.isNotEmpty)
-                  Text(
-                    '${entry.place}  ·  ${entry.period}',
-                    style: AppTextStyles.label(
-                      13,
-                      color: const Color(0xFF718096),
-                    ),
-                  )
-                else
-                  Text(
-                    entry.period,
-                    style: AppTextStyles.label(
-                      13,
-                      color: const Color(0xFF718096),
-                    ),
+                Text(
+                  entry.place.isNotEmpty
+                      ? '${entry.place}  ·  ${entry.period}'
+                      : entry.period,
+                  style: AppTextStyles.label(
+                    13,
+                    color: const Color(0xFF718096),
                   ),
+                ),
                 const SizedBox(height: 4),
                 ...entry.description.map(
                   (line) => Padding(

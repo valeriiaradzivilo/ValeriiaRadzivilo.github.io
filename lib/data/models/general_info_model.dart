@@ -4,8 +4,7 @@ class GeneralInfoModel {
   final String name;
   final String title;
   final String location;
-  final String about;
-  final List<SkillEntry> skills;
+  final List<SkillGroup> skillGroups;
   final List<ExperienceEntry> experiences;
   final EducationEntry education;
   final List<LanguageEntry> languages;
@@ -15,13 +14,18 @@ class GeneralInfoModel {
     required this.name,
     required this.title,
     required this.location,
-    required this.about,
-    required this.skills,
+    required this.skillGroups,
     required this.experiences,
     required this.education,
     required this.languages,
     required this.contact,
   });
+}
+
+class SkillGroup {
+  final String labelKey;
+  final List<SkillEntry> skills;
+  const SkillGroup({required this.labelKey, required this.skills});
 }
 
 class SkillEntry {
@@ -60,12 +64,12 @@ class EducationEntry {
 
 class LanguageEntry {
   final String language;
-  final String level;
+  final String levelKey;
   final double progress;
 
   const LanguageEntry({
     required this.language,
-    required this.level,
+    required this.levelKey,
     required this.progress,
   });
 }

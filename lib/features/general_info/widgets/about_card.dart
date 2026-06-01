@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 
+import '../../../../l10n/app_locale.dart';
 import '../../../../shared/theme/text_styles.dart';
 import 'wall_picture.dart';
 
 class AboutCard extends StatelessWidget {
-  final String about;
-
-  const AboutCard({super.key, required this.about});
+  const AboutCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +22,13 @@ class AboutCard extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Text('About Me', style: AppTextStyles.cardHeading(32)),
+        child: Text(
+          AppLocale.aboutMe.getString(context),
+          style: AppTextStyles.cardHeading(32),
+        ),
       ),
       caption: Text(
-        about,
+        AppLocale.aboutText.getString(context),
         style: AppTextStyles.label(15, color: const Color(0xFF4A5568)),
       ),
     );

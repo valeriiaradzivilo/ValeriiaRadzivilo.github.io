@@ -11,9 +11,18 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF7FAFC),
-      body: BlocProvider(
-        create: (_) => GeneralInfoCubit(const GeneralInfoRepositoryImpl()),
-        child: const GeneralInfo(),
+      body: DecoratedBox(
+        decoration: BoxDecoration(
+          image: const DecorationImage(
+            image: AssetImage('assets/images/pin_board.jpg'),
+            fit: BoxFit.cover,
+          ),
+          border: Border.all(color: Colors.brown, width: 20),
+        ),
+        child: BlocProvider(
+          create: (_) => GeneralInfoCubit(const GeneralInfoRepositoryImpl()),
+          child: const GeneralInfo(),
+        ),
       ),
     );
   }

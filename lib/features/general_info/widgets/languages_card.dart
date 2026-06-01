@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 
+import '../../../../l10n/app_locale.dart';
 import '../../../../shared/theme/text_styles.dart';
 import '../../../data/models/general_info_model.dart';
 import 'wall_picture.dart';
@@ -23,17 +25,28 @@ class LanguagesCard extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Text('Languages', style: AppTextStyles.cardHeading(28)),
+        child: Text(
+          AppLocale.languages.getString(context),
+          style: AppTextStyles.cardHeading(28),
+        ),
       ),
       caption: Column(
-        children: languages
-            .map(
-              (entry) => Padding(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ...languages.map((entry) => Padding(
                 padding: const EdgeInsets.only(bottom: 12),
                 child: _LangRow(entry: entry),
-              ),
-            )
-            .toList(),
+              )),
+          const SizedBox(height: 4),
+          Text(
+            AppLocale.readyToLearnMore.getString(context),
+            style: AppTextStyles.label(
+              13,
+              color: const Color(0xFF718096),
+              weight: FontWeight.w600,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -57,7 +70,7 @@ class _LangRow extends StatelessWidget {
               style: AppTextStyles.label(16, weight: FontWeight.bold),
             ),
             Text(
-              entry.level,
+              entry.levelKey.getString(context),
               style: AppTextStyles.label(13, color: const Color(0xFF718096)),
             ),
           ],

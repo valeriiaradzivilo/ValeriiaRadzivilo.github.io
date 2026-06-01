@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 
+import '../../../../l10n/app_locale.dart';
 import '../../../../shared/theme/text_styles.dart';
 import '../../../data/models/general_info_model.dart';
 import 'wall_picture.dart';
@@ -23,7 +25,10 @@ class EducationCard extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Text('Education', style: AppTextStyles.cardHeading(28)),
+        child: Text(
+          AppLocale.education.getString(context),
+          style: AppTextStyles.cardHeading(28),
+        ),
       ),
       caption: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
