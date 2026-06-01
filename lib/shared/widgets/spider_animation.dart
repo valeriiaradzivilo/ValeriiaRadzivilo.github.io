@@ -1,7 +1,6 @@
 import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 @JS('location.reload')
 external void _reload();
@@ -108,12 +107,19 @@ class _SpiderAnimationState extends State<SpiderAnimation>
                   ),
                   Positioned(
                     top: threadLen,
-                    child: FaIcon(
-                      FontAwesomeIcons.spider,
+                    child: Icon(
+                      Icons.bug_report_outlined,
                       size: _spiderSize,
                       color: triggered
                           ? const Color(0xFFB71C1C)
-                          : const Color(0xFF1A1A1A),
+                          : Colors.black87,
+                      shadows: [
+                        const Shadow(
+                          blurRadius: 4,
+                          color: Colors.black45,
+                          offset: Offset(0, 10),
+                        ),
+                      ],
                     ),
                   ),
                 ],
