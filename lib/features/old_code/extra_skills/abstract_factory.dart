@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/special_widgets/go_back_home_button.dart';
+import 'package:portfolio/features/old_code/special_widgets/go_back_home_button.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
 class AbstractFactory extends StatefulWidget {
@@ -20,9 +20,7 @@ class AbstractFactoryState extends State<AbstractFactory> {
     } else {
       runApp(const WebAbstrFactApp());
     }
-    return const SizedBox(
-      width: 100,
-    );
+    return const SizedBox(width: 100);
   }
 }
 
@@ -76,10 +74,7 @@ class AbstrFactApp extends StatelessWidget {
           child: Column(
             children: [
               loadingWidgetFactory.createLoadingWidget(),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: goBackHome(),
-              ),
+              const Padding(padding: EdgeInsets.all(8.0), child: goBackHome()),
             ],
           ),
         ),

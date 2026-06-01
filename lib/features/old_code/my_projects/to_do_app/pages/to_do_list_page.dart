@@ -3,18 +3,22 @@ import 'dart:math';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:portfolio/my_projects/to_do_app/data/database_tasks.dart';
-import 'package:portfolio/my_projects/to_do_app/util/dialogue_new_box.dart';
-import 'package:portfolio/my_projects/to_do_app/util/my_text.dart';
-import 'package:portfolio/my_projects/to_do_app/util/todo_tile.dart';
-
+import 'package:portfolio/features/old_code/my_projects/to_do_app/data/database_tasks.dart';
+import 'package:portfolio/features/old_code/my_projects/to_do_app/util/dialogue_new_box.dart';
+import 'package:portfolio/features/old_code/my_projects/to_do_app/util/my_text.dart';
+import 'package:portfolio/features/old_code/my_projects/to_do_app/util/todo_tile.dart';
 
 class ToDoListPage extends StatefulWidget {
   final int indexBox;
   final String boxName;
   final List? blocksFirstTasks;
 
-  const ToDoListPage({super.key, required this.boxName, required this.blocksFirstTasks, required this.indexBox});
+  const ToDoListPage({
+    super.key,
+    required this.boxName,
+    required this.blocksFirstTasks,
+    required this.indexBox,
+  });
   @override
   State<ToDoListPage> createState() => _ToDoListPageState();
 }
@@ -25,8 +29,9 @@ class _ToDoListPageState extends State<ToDoListPage> {
   late ToDoDatabase db;
 
   // controller for fireworks
-  final ConfettiController _centerController =
-      ConfettiController(duration: const Duration(seconds: 1));
+  final ConfettiController _centerController = ConfettiController(
+    duration: const Duration(seconds: 1),
+  );
   late double percentDone = 0;
 
   // reference hive box
@@ -55,7 +60,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
     done = db.doneList;
     percentDone =
         db.doneList.length / (db.toDoList.length + db.doneList.length);
-    if (percentDone ==   1) {
+    if (percentDone == 1) {
       _centerController.play();
     } else {
       _centerController.stop();
@@ -65,7 +70,6 @@ class _ToDoListPageState extends State<ToDoListPage> {
 
   @override
   void initState() {
-
     super.initState();
   }
 
@@ -80,7 +84,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
         db.toDoList.add(db.doneList.elementAt(index));
         db.doneList.removeAt(index);
       }
-      if (percentDone ==  1) {
+      if (percentDone == 1) {
         _centerController.play();
       } else {
         _centerController.stop();
@@ -88,18 +92,18 @@ class _ToDoListPageState extends State<ToDoListPage> {
     });
     db.updateDb();
     widget.blocksFirstTasks?.removeAt(widget.indexBox);
-    if(db.toDoList.length>1) {
-      widget.blocksFirstTasks?.insert(
-          widget.indexBox, [db.toDoList.elementAt(0)[0],db.toDoList.elementAt(1)[0],'...']);
-    }
-    else if(db.toDoList.isNotEmpty)
-    {
-      widget.blocksFirstTasks?.insert(
-          widget.indexBox, [db.toDoList.elementAt(0)[0]]);
-    }
-    else{
-      widget.blocksFirstTasks?.insert(
-          widget.indexBox, ['Nothing to do']);
+    if (db.toDoList.length > 1) {
+      widget.blocksFirstTasks?.insert(widget.indexBox, [
+        db.toDoList.elementAt(0)[0],
+        db.toDoList.elementAt(1)[0],
+        '...',
+      ]);
+    } else if (db.toDoList.isNotEmpty) {
+      widget.blocksFirstTasks?.insert(widget.indexBox, [
+        db.toDoList.elementAt(0)[0],
+      ]);
+    } else {
+      widget.blocksFirstTasks?.insert(widget.indexBox, ['Nothing to do']);
     }
   }
 
@@ -119,18 +123,18 @@ class _ToDoListPageState extends State<ToDoListPage> {
     db.updateDb();
 
     widget.blocksFirstTasks?.removeAt(widget.indexBox);
-    if(db.toDoList.length>1) {
-      widget.blocksFirstTasks?.insert(
-          widget.indexBox, [db.toDoList.elementAt(0)[0],db.toDoList.elementAt(1)[0],'...']);
-    }
-    else if(db.toDoList.isNotEmpty)
-      {
-        widget.blocksFirstTasks?.insert(
-            widget.indexBox, [db.toDoList.elementAt(0)[0]]);
-      }
-    else{
-      widget.blocksFirstTasks?.insert(
-          widget.indexBox, ['Nothing to do']);
+    if (db.toDoList.length > 1) {
+      widget.blocksFirstTasks?.insert(widget.indexBox, [
+        db.toDoList.elementAt(0)[0],
+        db.toDoList.elementAt(1)[0],
+        '...',
+      ]);
+    } else if (db.toDoList.isNotEmpty) {
+      widget.blocksFirstTasks?.insert(widget.indexBox, [
+        db.toDoList.elementAt(0)[0],
+      ]);
+    } else {
+      widget.blocksFirstTasks?.insert(widget.indexBox, ['Nothing to do']);
     }
   }
 
@@ -145,18 +149,18 @@ class _ToDoListPageState extends State<ToDoListPage> {
     db.updateDb();
 
     widget.blocksFirstTasks?.removeAt(widget.indexBox);
-    if(db.toDoList.length>1) {
-      widget.blocksFirstTasks?.insert(
-          widget.indexBox, [db.toDoList.elementAt(0)[0],db.toDoList.elementAt(1)[0],'...']);
-    }
-    else if(db.toDoList.isNotEmpty)
-    {
-      widget.blocksFirstTasks?.insert(
-          widget.indexBox, [db.toDoList.elementAt(0)[0]]);
-    }
-    else{
-      widget.blocksFirstTasks?.insert(
-          widget.indexBox, ['Nothing to do']);
+    if (db.toDoList.length > 1) {
+      widget.blocksFirstTasks?.insert(widget.indexBox, [
+        db.toDoList.elementAt(0)[0],
+        db.toDoList.elementAt(1)[0],
+        '...',
+      ]);
+    } else if (db.toDoList.isNotEmpty) {
+      widget.blocksFirstTasks?.insert(widget.indexBox, [
+        db.toDoList.elementAt(0)[0],
+      ]);
+    } else {
+      widget.blocksFirstTasks?.insert(widget.indexBox, ['Nothing to do']);
     }
   }
 
@@ -176,157 +180,144 @@ class _ToDoListPageState extends State<ToDoListPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-        backgroundColor: Colors.tealAccent,
-        appBar: null,
-        floatingActionButton: FloatingActionButton(
-          onPressed: createNewTask,
-          child: const Icon(Icons.add),
-        ),
-        body: FutureBuilder<String>(
-            future: openBoxMy(),
-            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-              List<Widget> children;
+      backgroundColor: Colors.tealAccent,
+      appBar: null,
+      floatingActionButton: FloatingActionButton(
+        onPressed: createNewTask,
+        child: const Icon(Icons.add),
+      ),
+      body: FutureBuilder<String>(
+        future: openBoxMy(),
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+          List<Widget> children;
 
-              if (snapshot.hasData) {
-                children = <Widget>[
-                  Align(
-                    alignment: Alignment.center,
-                    child: ConfettiWidget(
-                      confettiController: _centerController,
-                      blastDirection: pi / 2,
-                      maxBlastForce: 5,
-                      minBlastForce: 1,
-                      emissionFrequency: 0.01,
+          if (snapshot.hasData) {
+            children = <Widget>[
+              Align(
+                alignment: Alignment.center,
+                child: ConfettiWidget(
+                  confettiController: _centerController,
+                  blastDirection: pi / 2,
+                  maxBlastForce: 5,
+                  minBlastForce: 1,
+                  emissionFrequency: 0.01,
 
-                      // particles will pop-up at a time
-                      numberOfParticles: 30,
+                  // particles will pop-up at a time
+                  numberOfParticles: 30,
 
-                      // particles will come down
-                      gravity: 1,
+                  // particles will come down
+                  gravity: 1,
 
-                      // start again as soon as the
-                      // animation is finished
-                      shouldLoop: false,
+                  // start again as soon as the
+                  // animation is finished
+                  shouldLoop: false,
 
-                      // assign colors of any choice
-                      colors: const [
-                        Colors.green,
-                        Colors.tealAccent,
-                        Colors.greenAccent,
-                        Colors.lightGreenAccent,
-                        Colors.teal
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: CustomScrollView(slivers: <Widget>[
-                      SliverAppBar(
-                        stretch: true,
-                        expandedHeight: widget.boxName.length.toDouble()*3,
-                        flexibleSpace: FlexibleSpaceBar(
-                          stretchModes: const <StretchMode>[
-                            StretchMode.zoomBackground,
-                            StretchMode.blurBackground,
-                            StretchMode.fadeTitle,
-                          ],
-                          centerTitle: true,
-                          title: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(widget.boxName,
-                              overflow: TextOverflow.visible,),
-                          ),
-
-                        ),
-                      ),
-                      const SliverToBoxAdapter(
-                        child: MainText(text: 'To do:'),
-                      ),
-                      SliverPadding(
-                        padding: const EdgeInsets.all(4.0),
-                        sliver: SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              return ToDoTile(
-                                taskName: toDo.elementAt(index)[0],
-                                taskComplete: toDo.elementAt(index)[1],
-                                onChanged: (value) =>
-                                    checkboxChanged(value, index, true),
-                                deleteTask: (context) =>
-                                    deleteTask(index, true),
-                                paddingSize: 25,
-                              );
-                            },
-                            childCount: toDo.length,
-                          ),
-                        ),
-                      ),
-                      const SliverToBoxAdapter(
-                        child: MainText(text: 'Done:'),
-                      ),
-                      SliverPadding(
-                        padding: const EdgeInsets.all(4.0),
-                        sliver: SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              return ToDoTile(
-                                taskName: done.elementAt(index)[0],
-                                taskComplete: done.elementAt(index)[1],
-                                onChanged: (value) =>
-                                    checkboxChanged(value, index, false),
-                                deleteTask: (context) =>
-                                    deleteTask(index, false),
-                                paddingSize: 10,
-                              );
-                            },
-                            childCount: done.length,
-                          ),
-                        ),
-                      ),
-                    ]),
-                  ),
-                  MainText(
-                      text: percentDone == 1
-                          ? "You've done great job today!"
-                          : ''),
-                  MainText(
-                      text: percentDone.isNaN
-                          ? "You haven't planned anything yet."
-                          : 'You made: ${(percentDone* 100).toInt() }% of work you planned.'),
-
-                ];
-              } else if (snapshot.hasError) {
-                children = <Widget>[
-                  const Icon(
-                    Icons.error_outline,
-                    color: Colors.red,
-                    size: 60,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: Text('Error: ${snapshot.error}'),
-                  ),
-                ];
-              } else {
-                children = const <Widget>[
-                  SizedBox(
-                    width: 60,
-                    height: 60,
-                    child: CircularProgressIndicator(),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 16),
-                    child: Text('Awaiting result...'),
-                  ),
-                ];
-              }
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: children,
+                  // assign colors of any choice
+                  colors: const [
+                    Colors.green,
+                    Colors.tealAccent,
+                    Colors.greenAccent,
+                    Colors.lightGreenAccent,
+                    Colors.teal,
+                  ],
                 ),
-              );
-            }));
+              ),
+              Expanded(
+                child: CustomScrollView(
+                  slivers: <Widget>[
+                    SliverAppBar(
+                      stretch: true,
+                      expandedHeight: widget.boxName.length.toDouble() * 3,
+                      flexibleSpace: FlexibleSpaceBar(
+                        stretchModes: const <StretchMode>[
+                          StretchMode.zoomBackground,
+                          StretchMode.blurBackground,
+                          StretchMode.fadeTitle,
+                        ],
+                        centerTitle: true,
+                        title: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            widget.boxName,
+                            overflow: TextOverflow.visible,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SliverToBoxAdapter(child: MainText(text: 'To do:')),
+                    SliverPadding(
+                      padding: const EdgeInsets.all(4.0),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return ToDoTile(
+                            taskName: toDo.elementAt(index)[0],
+                            taskComplete: toDo.elementAt(index)[1],
+                            onChanged: (value) =>
+                                checkboxChanged(value, index, true),
+                            deleteTask: (context) => deleteTask(index, true),
+                            paddingSize: 25,
+                          );
+                        }, childCount: toDo.length),
+                      ),
+                    ),
+                    const SliverToBoxAdapter(child: MainText(text: 'Done:')),
+                    SliverPadding(
+                      padding: const EdgeInsets.all(4.0),
+                      sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return ToDoTile(
+                            taskName: done.elementAt(index)[0],
+                            taskComplete: done.elementAt(index)[1],
+                            onChanged: (value) =>
+                                checkboxChanged(value, index, false),
+                            deleteTask: (context) => deleteTask(index, false),
+                            paddingSize: 10,
+                          );
+                        }, childCount: done.length),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              MainText(
+                text: percentDone == 1 ? "You've done great job today!" : '',
+              ),
+              MainText(
+                text: percentDone.isNaN
+                    ? "You haven't planned anything yet."
+                    : 'You made: ${(percentDone * 100).toInt()}% of work you planned.',
+              ),
+            ];
+          } else if (snapshot.hasError) {
+            children = <Widget>[
+              const Icon(Icons.error_outline, color: Colors.red, size: 60),
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: Text('Error: ${snapshot.error}'),
+              ),
+            ];
+          } else {
+            children = const <Widget>[
+              SizedBox(
+                width: 60,
+                height: 60,
+                child: CircularProgressIndicator(),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 16),
+                child: Text('Awaiting result...'),
+              ),
+            ];
+          }
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: children,
+            ),
+          );
+        },
+      ),
+    );
   }
 }

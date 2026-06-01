@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/extra_skills/builder_design_pattern/ingredients/ingredien_class.dart';
-import 'package:portfolio/extra_skills/builder_design_pattern/sushi/sushi_all.dart';
-import 'package:portfolio/extra_skills/builder_design_pattern/sushi/sushi_class.dart';
-import 'package:portfolio/special_widgets/go_back_home_button.dart';
+import 'package:portfolio/features/old_code/extra_skills/builder_design_pattern/ingredients/ingredien_class.dart';
+import 'package:portfolio/features/old_code/extra_skills/builder_design_pattern/sushi/sushi_all.dart';
+import 'package:portfolio/features/old_code/extra_skills/builder_design_pattern/sushi/sushi_class.dart';
+import 'package:portfolio/features/old_code/special_widgets/go_back_home_button.dart'
+    show goBackHome;
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -19,9 +20,7 @@ class BuilderApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return MaterialApp(
           title: 'Design Pattern Practice: Builder',
-          theme: ThemeData(
-            primarySwatch: Colors.deepPurple,
-          ),
+          theme: ThemeData(primarySwatch: Colors.deepPurple),
           home: const BuilderAppHomePage(),
         );
       },
@@ -37,12 +36,11 @@ class BuilderAppHomePage extends StatefulWidget {
 }
 
 class _BuilderAppHomePageState extends State<BuilderAppHomePage> {
-
   List<Sushi> listOfSushies = [
     CookedTunaAndAvocadoHRoll(),
     SalmonAndAvocadoHRoll(),
     VegetarianHRoll(),
-    CrispyChickenHRoll()
+    CrispyChickenHRoll(),
   ];
 
   late Sushi dropdownValue;
@@ -58,39 +56,36 @@ class _BuilderAppHomePageState extends State<BuilderAppHomePage> {
   Container infoBuilder() {
     return Container(
       padding: const EdgeInsets.all(20),
-          child: Column(children: [
-            Text(
-              'INFO:',
-              style: TextStyle(fontWeight: FontWeight.bold,
-                fontSize: 8.h,
-             ),
-            ),
-            const Divider(),
-            Text(
-              'Price',
-              style: TextStyle(fontWeight: FontWeight.bold,
-                fontSize: 3.h,),
-            ),
-            Text('${dropdownValue.getPrice()}\n',
-            style:TextStyle(
-            fontSize: 2.h,)),
-            Text(
-              'Ingredients',
-              style: TextStyle(fontWeight: FontWeight.bold,
-                fontSize: 3.h,),
-            ),
-            Text('${dropdownValue.getIngredients()}\n',
-                style:TextStyle(
-                  fontSize: 2.h,)),
-            Text(
-              'Allergens',
-              style: TextStyle(fontWeight: FontWeight.bold,
-                fontSize: 3.w,),
-            ),
-            Text(dropdownValue.getAllergens(),
-                style:TextStyle(
-                  fontSize: 2.w,)),
-      ]),
+      child: Column(
+        children: [
+          Text(
+            'INFO:',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 8.h),
+          ),
+          const Divider(),
+          Text(
+            'Price',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 3.h),
+          ),
+          Text(
+            '${dropdownValue.getPrice()}\n',
+            style: TextStyle(fontSize: 2.h),
+          ),
+          Text(
+            'Ingredients',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 3.h),
+          ),
+          Text(
+            '${dropdownValue.getIngredients()}\n',
+            style: TextStyle(fontSize: 2.h),
+          ),
+          Text(
+            'Allergens',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 3.w),
+          ),
+          Text(dropdownValue.getAllergens(), style: TextStyle(fontSize: 2.w)),
+        ],
+      ),
     );
   }
 
@@ -119,7 +114,7 @@ class _BuilderAppHomePageState extends State<BuilderAppHomePage> {
               },
             ),
             infoBuilder(),
-            goBackHome(),
+            const goBackHome(),
           ],
         ),
       ),

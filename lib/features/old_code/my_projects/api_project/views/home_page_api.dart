@@ -1,8 +1,10 @@
 import 'dart:math';
-import 'package:portfolio/main.dart';
+
 import 'package:flutter/material.dart';
-import 'package:portfolio/my_projects/api_project/models/comments.dart';
-import 'package:portfolio/my_projects/api_project/services/remote_service.dart';
+import 'package:portfolio/features/old_code/main.dart';
+import 'package:portfolio/features/old_code/my_projects/api_project/models/comments.dart';
+import 'package:portfolio/features/old_code/my_projects/api_project/services/remote_service.dart';
+
 class ApiWorkPage extends StatefulWidget {
   const ApiWorkPage({super.key});
 
@@ -16,25 +18,23 @@ class _ApiWorkPageState extends State<ApiWorkPage> {
   bool isLoaded = false;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
     // fetch data from api
     getData();
   }
 
-  Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> getData()
-  async{
+  Future<void> getData() async {
     comments = await RemoteService().getComments();
-    if(comments!=null)
-      {
-        setState(() {
-          isLoaded = true;
-        });
-      }
+    if (comments != null) {
+      setState(() {
+        isLoaded = true;
+      });
+    }
   }
-  Random random = Random();
 
+  Random random = Random();
 
   @override
   Widget build(BuildContext context) {
@@ -42,66 +42,80 @@ class _ApiWorkPageState extends State<ApiWorkPage> {
       appBar: null,
       body: Visibility(
         visible: isLoaded,
-        replacement: const Center(
-          child: CircularProgressIndicator(),
-        ),
+        replacement: const Center(child: CircularProgressIndicator()),
         child: ListView.builder(
           itemCount: comments?.length,
-            itemBuilder: (context, index){
-          return Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(color: Colors.amber[100]),
-            child: Row(
-              children: [
-                Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Color.fromARGB(random.nextInt(255), random.nextInt(255), random.nextInt(255), random.nextInt(255)),
-                  ),
-                ),
-                const SizedBox(width: 10,),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text(comments![index].name
-                        ,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(fontSize: 24,
-                        fontWeight: FontWeight.bold),
+          itemBuilder: (context, index) {
+            return Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(color: Colors.amber[100]),
+              child: Row(
+                children: [
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Color.fromARGB(
+                        random.nextInt(255),
+                        random.nextInt(255),
+                        random.nextInt(255),
+                        random.nextInt(255),
                       ),
-                      Text(
-                      comments![index].body ?? 'no comment provided',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(fontSize: 24),),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          comments![index].name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          comments![index].body ?? 'no comment provided',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 24),
+                        ),
 
-                      const Text('Source: https://jsonplaceholder.typicode.com/',
-                      style: TextStyle(color: Colors.redAccent,
-                      fontSize: 14),
-                      ),
-                      const SizedBox(height: 10,),
-                    ],
+                        const Text(
+                          'Source: https://jsonplaceholder.typicode.com/',
+                          style: TextStyle(
+                            color: Colors.redAccent,
+                            fontSize: 14,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton.icon(
-                    // style: style,
-                    onPressed: () async {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const HomePage()));
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton.icon(
+                      // style: style,
+                      onPressed: () async {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const HomePage(),
+                          ),
+                        );
                       },
-                    icon:const Icon(Icons.arrow_circle_left_outlined),
-                    label: const Text('Go back to portfolio'),
+                      icon: const Icon(Icons.arrow_circle_left_outlined),
+                      label: const Text('Go back to portfolio'),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        }),
-      )
+                ],
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }

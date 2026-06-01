@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/features/old_code/main.dart';
+
 void main() {
   runApp(const Calculator());
 }
@@ -18,7 +20,7 @@ class _CalculatorState extends State<Calculator> {
   double num2 = 0.0;
   String operand = '';
 
-  void void buttonPressed(String buttonText) {
+  void buttonPressed(String buttonText) {
     if (buttonText == 'AC') {
       _output = '0';
       num1 = 0.0;
@@ -76,7 +78,11 @@ class _CalculatorState extends State<Calculator> {
           // padding: EdgeInsets.all(24.0),
           child: Text(
             buttonText,
-            style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,color: Colors.white),
+            style: const TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
           onPressed: () => buttonPressed(buttonText),
         ),
@@ -84,83 +90,80 @@ class _CalculatorState extends State<Calculator> {
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple[50],
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Container(
-          child: Column(
-            children: <Widget>[
-              Container(
-                alignment: Alignment.centerRight,
-                padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
-                child: Text(
-                  output,
-                  style: const TextStyle(fontSize: 48.0, fontWeight: FontWeight.bold),
+        child: Column(
+          children: <Widget>[
+            Container(
+              alignment: Alignment.centerRight,
+              padding: const EdgeInsets.symmetric(
+                vertical: 24.0,
+                horizontal: 12.0,
+              ),
+              child: Text(
+                output,
+                style: const TextStyle(
+                  fontSize: 48.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              const Expanded(
-                child: Divider(),
-              ),
-              Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      buildButton('7'),
-                      buildButton('8'),
-                      buildButton('9'),
-                      buildButton('/'),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      buildButton('4'),
-                      buildButton('5'),
-                      buildButton('6'),
-                      buildButton('x'),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      buildButton('1'),
-                      buildButton('2'),
-                      buildButton('3'),
-                      buildButton('-'),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      buildButton('.'),
-                      buildButton('0'),
-                      buildButton('00'),
-                      buildButton('+'),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      buildButton('AC'),
-                      buildButton('='),
-                    ],
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton.icon(
-                  // style: style,
-                  onPressed: ()  {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()));
-                    },
-                  icon:const Icon(Icons.arrow_circle_left_outlined),
-                  label: const Text('Go back to portfolio'),
+            ),
+            const Expanded(child: Divider()),
+            Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    buildButton('7'),
+                    buildButton('8'),
+                    buildButton('9'),
+                    buildButton('/'),
+                  ],
                 ),
+                Row(
+                  children: <Widget>[
+                    buildButton('4'),
+                    buildButton('5'),
+                    buildButton('6'),
+                    buildButton('x'),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    buildButton('1'),
+                    buildButton('2'),
+                    buildButton('3'),
+                    buildButton('-'),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    buildButton('.'),
+                    buildButton('0'),
+                    buildButton('00'),
+                    buildButton('+'),
+                  ],
+                ),
+                Row(children: <Widget>[buildButton('AC'), buildButton('=')]),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton.icon(
+                // style: style,
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                },
+                icon: const Icon(Icons.arrow_circle_left_outlined),
+                label: const Text('Go back to portfolio'),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

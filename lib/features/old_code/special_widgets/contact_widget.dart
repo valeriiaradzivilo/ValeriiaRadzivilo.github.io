@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:mailto/mailto.dart';
-import 'package:portfolio/special_widgets/topics_text.dart';
+import 'package:portfolio/features/old_code/my_projects/to_do_app/util/my_text.dart';
+import 'package:portfolio/features/old_code/special_widgets/topics_text.dart';
 import 'package:sizer/sizer.dart';
-
-import 'package:portfolio/special_widgets/main_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactsZip extends StatelessWidget {
@@ -18,29 +17,24 @@ class ContactsZip extends StatelessWidget {
   }
 
   void copyText(BuildContext context) {
-    Clipboard.setData(ClipboardData(text: textInfo)).then(
-      (_) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Text is copied to clipboard')));
-      },
-    );
+    Clipboard.setData(ClipboardData(text: textInfo)).then((_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Text is copied to clipboard')),
+      );
+    });
   }
 
   double paddingAll = 3.w;
 
   @override
   Widget build(BuildContext context) {
-    return
-       Column(children: [
+    return Column(
+      children: [
         type == 'Photo'
-            ?
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Image(
-                    image: AssetImage(textInfo),
-                    width: 20.h,
-                  ),
-                )
+            ? Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Image(image: AssetImage(textInfo), width: 20.h),
+              )
             : TopicText(text: type),
         (type == 'Phone' || type == 'Email')
             ? Slidable(
@@ -65,12 +59,14 @@ class ContactsZip extends StatelessWidget {
                 ),
                 child: Center(child: JustText('<- swipe left \n')),
               )
-            : (type!='Photo')?JustText(''):const Text(''),
-      ]
+            : (type != 'Photo')
+            ? JustText('')
+            : const Text(''),
+      ],
     );
   }
 
-  Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> Future<void> _sendEmail() async {
+  Future<void> _sendEmail() async {
     final mailtoLink = Mailto(
       to: ['radzivilovaleriia@gmail.com'],
       subject: '',

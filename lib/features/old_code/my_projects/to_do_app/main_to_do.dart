@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:portfolio/my_projects/to_do_app/data/database_blocks.dart';
-import 'package:portfolio/my_projects/to_do_app/pages/to_do_list_page.dart';
-import 'package:portfolio/my_projects/to_do_app/util/DialogueCheck.dart';
-import 'package:portfolio/my_projects/to_do_app/util/dialogue_new_box.dart';
-import 'package:portfolio/my_projects/to_do_app/util/help_box.dart';
-import 'package:portfolio/my_projects/to_do_app/util/task_block.dart';
+import 'package:portfolio/features/old_code/my_projects/to_do_app/data/database_blocks.dart';
+import 'package:portfolio/features/old_code/my_projects/to_do_app/pages/to_do_list_page.dart';
+import 'package:portfolio/features/old_code/my_projects/to_do_app/util/DialogueCheck.dart';
+import 'package:portfolio/features/old_code/my_projects/to_do_app/util/dialogue_new_box.dart';
+import 'package:portfolio/features/old_code/my_projects/to_do_app/util/help_box.dart';
+import 'package:portfolio/features/old_code/my_projects/to_do_app/util/task_block.dart';
 import 'package:sizer/sizer.dart';
 
 void main() async {
@@ -24,15 +23,15 @@ class MyToDoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // sizer to make app adaptive
-    return Sizer(builder: (context, orientation, deviceType) {
-      return MaterialApp(
-        title: 'To do',
-        theme: ThemeData(
-          primarySwatch: Colors.teal,
-        ),
-        home: const ToDoAppPage(),
-      );
-    });
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp(
+          title: 'To do',
+          theme: ThemeData(primarySwatch: Colors.teal),
+          home: const ToDoAppPage(),
+        );
+      },
+    );
   }
 }
 
@@ -66,7 +65,7 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
     await Hive.openBox('ToDoAppBox');
     _myBox ??= Hive.box('ToDoAppBox');
     db = ToDoBlocksDatabase();
-// load db or create inital data
+    // load db or create inital data
     if (_myBox.get('BLOCKNAMES') == null) {
       db.createInitialData();
     } else {
@@ -78,8 +77,6 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
 
   @override
   void initState() {
-
-
     super.initState();
     restartApp();
   }
@@ -116,12 +113,15 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
       int indexBox = db.blocksNames.length - 1;
       db.blocksFirstTasks?.add(['Nothing yet']);
       Navigator.of(context).pop();
-      await Navigator.of(context).push(MaterialPageRoute(
+      await Navigator.of(context).push(
+        MaterialPageRoute(
           builder: (context) => ToDoListPage(
             boxName: textFromController,
             indexBox: indexBox,
             blocksFirstTasks: db.blocksFirstTasks,
-          )));
+          ),
+        ),
+      );
 
       db.updateDb();
       setState(() {
@@ -144,12 +144,15 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
 
   // open to do list with this name
   Future<void> openToDoList(String boxName, int index) async {
-    await Navigator.of(context).push(MaterialPageRoute(
+    await Navigator.of(context).push(
+      MaterialPageRoute(
         builder: (context) => ToDoListPage(
           boxName: boxName,
           blocksFirstTasks: db.blocksFirstTasks,
           indexBox: index,
-        )));
+        ),
+      ),
+    );
     restartApp();
   }
 
@@ -173,101 +176,103 @@ class _ToDoAppPageState extends State<ToDoAppPage> {
   @override
   Widget build(BuildContext context) {
     return KeyedSubtree(
-        key: key,
-        child: Scaffold(
-            backgroundColor: Colors.tealAccent,
-            appBar: AppBar(
-              centerTitle: true,
-              title: const Text(
-                'Tasks for today',
-              ),
-              elevation: 0,
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: IconButton(
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return const HelpBox();
-                            });
-                      },
-                      icon: const Icon(Icons.help_center_outlined)),
-                )
-              ],
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: createNewToDoListPage,
-              child: const Icon(Icons.add),
-            ),
-            body: FutureBuilder<String>(
-                future: openBox(),
-                builder:
-                    (BuildContext context, AsyncSnapshot<String> snapshot) {
-                  List<Widget> children;
-
-                  if (snapshot.hasData) {
-                    children = <Widget>[
-                      Expanded(
-                        child: SizedBox(
-                          height: 200,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GridView.builder(
-                                gridDelegate:
-                                const SliverGridDelegateWithMaxCrossAxisExtent(
-                                    maxCrossAxisExtent: 300,
-                                    childAspectRatio: 3 / 3,
-                                    crossAxisSpacing: 20,
-                                    mainAxisSpacing: 20),
-                                itemCount: db.blocksNames.length,
-                                itemBuilder: (BuildContext ctx, index) {
-                                  return GestureDetector(
-                                    onTap: () => openToDoList(
-                                        db.blocksNames.elementAt(index), index),
-                                    onLongPress: () => onLongPressOnBox(index),
-                                    child: TaskBlockMain(
-                                      name: db.blocksNames.elementAt(index),
-                                      tasks: db.blocksFirstTasks?.elementAt(index),
-                                    ),
-                                  );
-                                }),
-                          ),
-                        ),
-                      ),
-                    ];
-                  } else if (snapshot.hasError) {
-                    children = <Widget>[
-                      const Icon(
-                        Icons.error_outline,
-                        color: Colors.red,
-                        size: 60,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16),
-                        child: Text('Error: ${snapshot.error}'),
-                      ),
-                    ];
-                  } else {
-                    children = const <Widget>[
-                      SizedBox(
-                        width: 60,
-                        height: 60,
-                        child: CircularProgressIndicator(),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 16),
-                        child: Text('Awaiting result...'),
-                      ),
-                    ];
-                  }
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: children,
-                    ),
+      key: key,
+      child: Scaffold(
+        backgroundColor: Colors.tealAccent,
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Tasks for today'),
+          elevation: 0,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const HelpBox();
+                    },
                   );
-                })));
+                },
+                icon: const Icon(Icons.help_center_outlined),
+              ),
+            ),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: createNewToDoListPage,
+          child: const Icon(Icons.add),
+        ),
+        body: FutureBuilder<String>(
+          future: openBox(),
+          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+            List<Widget> children;
+
+            if (snapshot.hasData) {
+              children = <Widget>[
+                Expanded(
+                  child: SizedBox(
+                    height: 200,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 300,
+                              childAspectRatio: 3 / 3,
+                              crossAxisSpacing: 20,
+                              mainAxisSpacing: 20,
+                            ),
+                        itemCount: db.blocksNames.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          return GestureDetector(
+                            onTap: () => openToDoList(
+                              db.blocksNames.elementAt(index),
+                              index,
+                            ),
+                            onLongPress: () => onLongPressOnBox(index),
+                            child: TaskBlockMain(
+                              name: db.blocksNames.elementAt(index),
+                              tasks: db.blocksFirstTasks?.elementAt(index),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ];
+            } else if (snapshot.hasError) {
+              children = <Widget>[
+                const Icon(Icons.error_outline, color: Colors.red, size: 60),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Text('Error: ${snapshot.error}'),
+                ),
+              ];
+            } else {
+              children = const <Widget>[
+                SizedBox(
+                  width: 60,
+                  height: 60,
+                  child: CircularProgressIndicator(),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 16),
+                  child: Text('Awaiting result...'),
+                ),
+              ];
+            }
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: children,
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }
