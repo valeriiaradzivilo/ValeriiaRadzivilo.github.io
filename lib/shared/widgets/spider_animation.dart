@@ -1,6 +1,7 @@
 import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 @JS('location.reload')
 external void _reload();
@@ -100,24 +101,33 @@ class _SpiderAnimationState extends State<SpiderAnimation>
                     child: Container(
                       width: 1.5,
                       height: threadLen,
-                      color: triggered
-                          ? const Color(0xFFB71C1C)
-                          : const Color(0xFF5D4037),
+                      decoration: BoxDecoration(
+                        color: triggered
+                            ? const Color(0xFFB71C1C)
+                            : const Color(0xFF1A1A1A),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.5),
+                            blurRadius: 4,
+                            offset: const Offset(2, 10),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Positioned(
-                    top: threadLen,
-                    child: Icon(
-                      Icons.bug_report_outlined,
+                    top: threadLen - _spiderSize / 2,
+                    child: FaIcon(
+                      FontAwesomeIcons.spider,
                       size: _spiderSize,
                       color: triggered
                           ? const Color(0xFFB71C1C)
-                          : Colors.black87,
+                          : const Color(0xFF1A1A1A),
                       shadows: [
-                        const Shadow(
+                        Shadow(
+                          color: Colors.black.withValues(alpha: 0.5),
                           blurRadius: 4,
-                          color: Colors.black45,
-                          offset: Offset(0, 10),
+                          offset: const Offset(2, 10),
                         ),
                       ],
                     ),
