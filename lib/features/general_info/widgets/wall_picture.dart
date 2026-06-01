@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:portfolio/shared/widgets/pin_widget.dart';
 
 class WallPicture extends StatelessWidget {
   final Widget photo;
@@ -39,7 +40,6 @@ class WallPicture extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 16),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   ClipRect(child: photo),
                   const SizedBox(height: 10),
@@ -50,6 +50,7 @@ class WallPicture extends StatelessWidget {
                 ],
               ),
             ),
+
             Positioned(
               top: -9,
               left: 0,
@@ -71,6 +72,13 @@ class WallPicture extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+
+            Positioned(
+              top: -40,
+              left: 0,
+              right: 0,
+              child: Center(child: PinWidget(color: pinColor, size: 20)),
             ),
           ],
         ),
