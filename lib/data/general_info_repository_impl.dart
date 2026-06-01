@@ -63,6 +63,14 @@ final class GeneralInfoRepositoryImpl implements GeneralInfoRepository {
               SkillEntry('Lottie', Color(0xFF667EEA)),
             ],
           ),
+          SkillGroup(
+            labelKey: AppLocale.sgAiAssisted,
+            skills: [
+              SkillEntry('Cursor', Color(0xFF1A1A1A)),
+              SkillEntry('Claude', Color(0xFFD4A96A)),
+              SkillEntry('ChatGPT', Color(0xFF10A37F)),
+            ],
+          ),
         ],
         experiences: [
           ExperienceEntry(

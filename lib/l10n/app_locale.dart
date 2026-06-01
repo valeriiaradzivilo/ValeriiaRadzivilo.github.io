@@ -14,6 +14,7 @@ mixin AppLocale {
   static const String sgTesting = 'sg_testing';
   static const String sgTools = 'sg_tools';
   static const String sgAnimation = 'sg_animation';
+  static const String sgAiAssisted = 'sg_ai_assisted';
 
   // ── About paragraph ──────────────────────────────────────────────────────
   static const String aboutText = 'about_text';
@@ -74,6 +75,7 @@ mixin AppLocale {
     sgTesting: 'Testing',
     sgTools: 'Tools & Publishing',
     sgAnimation: 'Animation',
+    sgAiAssisted: 'AI-Assisted Coding',
     aboutText:
         "Hi! I'm a passionate Flutter & Dart developer who loves crafting "
         'beautiful, performant cross-platform apps for Android, iOS, and Web. '
@@ -108,7 +110,7 @@ mixin AppLocale {
         'Prepared lessons and maintained organized files and documentation for each student.',
     educInstitution:
         "National Technical University of Ukraine 'Kyiv Polytechnic Institute'",
-    educProgram: 'Computer Software Engineering',
+    educProgram: 'Software Engineering',
     educDegreeBachelor: "Bachelor's Degree",
     langUkrainian: 'Ukrainian',
     langEnglish: 'English',
@@ -128,6 +130,7 @@ mixin AppLocale {
     sgTesting: 'Тестування',
     sgTools: 'Інструменти',
     sgAnimation: 'Анімація',
+    sgAiAssisted: 'Кодування з ШІ',
     aboutText:
         'Привіт! Я Flutter & Dart розробниця, яка захоплюється створенням '
         'красивих та продуктивних кросплатформних застосунків для Android, '
