@@ -140,7 +140,7 @@ mixin AppLocale {
     profileLocation: 'Україна',
     expTitleFlutter: 'Flutter розробниця',
     expTitleTeacher: 'Викладач англійської мови онлайн',
-    expDreambit1: 'Розробляла вебові та мобільні застосунки в різних доменах.',
+    expDreambit1: 'Розробляла веб та мобільні застосунки в різних доменах.',
     expDreambit2:
         'Рефакторила застарілі кодові бази для покращення підтримуваності.',
     expDreambit3:

@@ -39,6 +39,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Valeriia Radzivilo Portfolio',
+      locale: FlutterLocalization.instance.currentLocale,
       supportedLocales: FlutterLocalization.instance.supportedLocales,
       localizationsDelegates:
           FlutterLocalization.instance.localizationsDelegates,

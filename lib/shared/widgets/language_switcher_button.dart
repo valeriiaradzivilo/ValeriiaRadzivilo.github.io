@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localization/flutter_localization.dart' show FlutterLocalization;
+import 'package:flutter_localization/flutter_localization.dart'
+    show FlutterLocalization;
 
 import '../theme/text_styles.dart';
 
@@ -10,9 +11,11 @@ class LanguageSwitcherButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final isEn = Localizations.localeOf(context).languageCode != 'uk';
 
-    return GestureDetector(
-      onTap: () =>
-          FlutterLocalization.instance.translate(isEn ? 'uk' : 'en'),
+    return InkWell(
+      key: ValueKey(
+        'language_switcher_button_${Localizations.localeOf(context).languageCode}',
+      ),
+      onTap: () => FlutterLocalization.instance.translate(isEn ? 'uk' : 'en'),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
@@ -38,10 +41,7 @@ class LanguageSwitcherButton extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            Text(
-              isEn ? '🇺🇦' : '🇬🇧',
-              style: const TextStyle(fontSize: 18),
-            ),
+            Text(isEn ? '🇺🇦' : '🇬🇧', style: const TextStyle(fontSize: 18)),
           ],
         ),
       ),
