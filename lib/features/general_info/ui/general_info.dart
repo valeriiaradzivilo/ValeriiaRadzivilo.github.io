@@ -17,17 +17,20 @@ class GeneralInfo extends StatelessWidget {
 
   static const _colGap = 20.0;
 
+  static const _narrowBreakpoint = 1100.0;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GeneralInfoCubit, GeneralInfoModel>(
       builder: (context, info) {
         final viewW = MediaQuery.sizeOf(context).width;
+        final isNarrow = viewW < _narrowBreakpoint;
+        final fullW = viewW - 2 * _colGap;
 
         return SafeArea(
           child: SingleChildScrollView(
             child: Container(
-              width: MediaQuery.sizeOf(context).width,
-
+              width: viewW,
               decoration: BoxDecoration(
                 image: const DecorationImage(
                   image: AssetImage('assets/images/pin_board.jpg'),
@@ -38,14 +41,15 @@ class GeneralInfo extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(_colGap),
                 child: Column(
+                  spacing: _colGap,
                   children: [
                     const Align(
                       alignment: Alignment.centerRight,
                       child: LanguageSwitcherButton(),
                     ),
-                    const SizedBox(height: _colGap),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+
+                    _ResponsiveRow(
+                      isNarrow: isNarrow,
                       spacing: _colGap,
                       children: [
                         ProfileCard(
@@ -53,34 +57,48 @@ class GeneralInfo extends StatelessWidget {
                           titleKey: info.titleKey,
                           locationKey: info.locationKey,
                         ),
-
-                        SizedBox(width: viewW / 3, child: const AboutCard()),
-                        EducationCard(education: info.education),
+                        SizedBox(
+                          width: isNarrow ? fullW : viewW / 3,
+                          child: const AboutCard(),
+                        ),
+                        SizedBox(
+                          width: isNarrow ? fullW : null,
+                          child: EducationCard(education: info.education),
+                        ),
                       ],
                     ),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    _ResponsiveRow(
+                      isNarrow: isNarrow,
                       spacing: _colGap,
                       children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              SkillsCard(skillGroups: info.skillGroups),
-                              LanguagesCard(languages: info.languages),
-                            ],
+                        if (isNarrow) ...[
+                          SizedBox(
+                            width: fullW,
+                            child: SkillsCard(skillGroups: info.skillGroups),
                           ),
-                        ),
-
+                          SizedBox(
+                            width: fullW,
+                            child: LanguagesCard(languages: info.languages),
+                          ),
+                        ] else
+                          Expanded(
+                            child: Column(
+                              children: [
+                                SkillsCard(skillGroups: info.skillGroups),
+                                LanguagesCard(languages: info.languages),
+                              ],
+                            ),
+                          ),
                         SizedBox(
-                          width: viewW * 0.6,
+                          width: isNarrow ? fullW : viewW * 0.6,
                           child: ExperienceCard(experiences: info.experiences),
                         ),
                       ],
                     ),
 
                     SizedBox(
-                      width: viewW * 0.6,
+                      width: isNarrow ? fullW : viewW * 0.6,
                       child: ContactCard(contact: info.contact),
                     ),
                   ],
@@ -90,6 +108,35 @@ class GeneralInfo extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _ResponsiveRow extends StatelessWidget {
+  const _ResponsiveRow({
+    required this.isNarrow,
+    required this.children,
+    this.spacing = 0,
+  });
+
+  final bool isNarrow;
+  final List<Widget> children;
+  final double spacing;
+
+  @override
+  Widget build(BuildContext context) {
+    if (isNarrow) {
+      return Wrap(
+        spacing: spacing,
+        runSpacing: spacing,
+        alignment: WrapAlignment.center,
+        children: children,
+      );
+    }
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      spacing: spacing,
+      children: children,
     );
   }
 }

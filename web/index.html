@@ -107,12 +107,12 @@
   </picture>
   <script>
     window.addEventListener('load', function(ev) {
-      _flutter.loader.load({
-        onEntrypointLoaded: async function(engineInitializer) {
-          let appRunner = await engineInitializer.initializeEngine();
-          await appRunner.runApp();
-          removeSplashFromWeb();
-        }
+      _flutter.loader.loadEntrypoint({}).then(function(engineInitializer) {
+        return engineInitializer.initializeEngine();
+      }).then(function(appRunner) {
+        return appRunner.runApp();
+      }).then(function() {
+        removeSplashFromWeb();
       });
     });
   </script>

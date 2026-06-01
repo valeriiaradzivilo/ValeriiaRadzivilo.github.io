@@ -121,7 +121,7 @@ mixin AppLocale {
     experience: 'Досвід',
     education: 'Освіта',
     languages: 'Мови',
-    findMe: 'Знайди мене',
+    findMe: 'Знайдіть мене',
     sgLanguages: 'Мови програмування',
     sgFrameworks: 'Фреймворки та SDK',
     sgBackend: 'Бекенд та хмари',
