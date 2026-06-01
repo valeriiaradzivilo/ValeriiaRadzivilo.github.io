@@ -34,13 +34,18 @@ class EducationCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            education.program,
-            style: AppTextStyles.label(16, weight: FontWeight.bold),
+            education.institutionKey.getString(context),
+            style: AppTextStyles.label(13, color: const Color(0xFF718096)),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            education.programKey.getString(context),
+            style: AppTextStyles.label(15, weight: FontWeight.bold),
           ),
           const SizedBox(height: 2),
           Text(
-            education.degree,
-            style: AppTextStyles.label(14, color: const Color(0xFF718096)),
+            education.degreeKey.getString(context),
+            style: AppTextStyles.label(13, color: const Color(0xFF718096)),
           ),
           const SizedBox(height: 2),
           Text(

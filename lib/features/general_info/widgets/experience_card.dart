@@ -60,7 +60,7 @@ class _ExperienceRow extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  entry.title,
+                  entry.titleKey.getString(context),
                   style: AppTextStyles.label(15, weight: FontWeight.bold),
                 ),
               ),
@@ -82,8 +82,8 @@ class _ExperienceRow extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                ...entry.description.map(
-                  (line) => Padding(
+                ...entry.descriptionKeys.map(
+                  (key) => Padding(
                     padding: const EdgeInsets.only(bottom: 2),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,7 +97,7 @@ class _ExperienceRow extends StatelessWidget {
                         ),
                         Expanded(
                           child: Text(
-                            line,
+                            key.getString(context),
                             style: AppTextStyles.label(
                               13,
                               color: const Color(0xFF4A5568),

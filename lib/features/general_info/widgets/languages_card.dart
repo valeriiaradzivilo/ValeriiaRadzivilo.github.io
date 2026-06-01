@@ -66,7 +66,7 @@ class _LangRow extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              entry.language,
+              entry.languageKey.getString(context),
               style: AppTextStyles.label(16, weight: FontWeight.bold),
             ),
             Text(

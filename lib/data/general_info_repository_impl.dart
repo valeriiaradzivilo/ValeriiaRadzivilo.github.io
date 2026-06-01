@@ -10,14 +10,16 @@ final class GeneralInfoRepositoryImpl implements GeneralInfoRepository {
   @override
   GeneralInfoModel getInfo() => const GeneralInfoModel(
         name: 'Valeriia Radzivilo',
-        title: 'Flutter Developer',
-        location: 'Ukraine',
+        titleKey: AppLocale.profileTitle,
+        locationKey: AppLocale.profileLocation,
         skillGroups: [
           SkillGroup(
             labelKey: AppLocale.sgLanguages,
             skills: [
               SkillEntry('Dart', Color(0xFF00B4AB)),
-              SkillEntry('Java / Kotlin / Swift', Color(0xFFE53E3E)),
+              SkillEntry('Java', Color(0xFFE53E3E)),
+              SkillEntry('Kotlin', Color(0xFF7F52FF)),
+              SkillEntry('Swift', Color(0xFFFA7343)),
               SkillEntry('SQL', Color(0xFFED8936)),
             ],
           ),
@@ -32,17 +34,17 @@ final class GeneralInfoRepositoryImpl implements GeneralInfoRepository {
           SkillGroup(
             labelKey: AppLocale.sgBackend,
             skills: [
-              SkillEntry('Supabase / Firebase', Color(0xFFFFA000)),
+              SkillEntry('Supabase', Color(0xFF3ECF8E)),
+              SkillEntry('Firebase', Color(0xFFFFA000)),
               SkillEntry('REST API', Color(0xFF48BB78)),
             ],
           ),
           SkillGroup(
             labelKey: AppLocale.sgTesting,
             skills: [
-              SkillEntry(
-                'Unit / Integration / Widget testing',
-                Color(0xFF38A169),
-              ),
+              SkillEntry('Unit testing', Color(0xFF38A169)),
+              SkillEntry('Integration testing', Color(0xFF2F855A)),
+              SkillEntry('Widget testing', Color(0xFF276749)),
             ],
           ),
           SkillGroup(
@@ -57,69 +59,71 @@ final class GeneralInfoRepositoryImpl implements GeneralInfoRepository {
           SkillGroup(
             labelKey: AppLocale.sgAnimation,
             skills: [
-              SkillEntry('Rive / Lottie', Color(0xFF9F7AEA)),
+              SkillEntry('Rive', Color(0xFF9F7AEA)),
+              SkillEntry('Lottie', Color(0xFF667EEA)),
             ],
           ),
         ],
         experiences: [
           ExperienceEntry(
-            title: 'Flutter Developer',
+            titleKey: AppLocale.expTitleFlutter,
             place: 'Dreambit',
             period: 'Feb 2025 – Jun 2026',
-            description: [
-              'Developed web and mobile applications across multiple domains.',
-              'Refactored legacy codebases for improved maintainability.',
-              'Created an educational platform for teachers, focusing on clear UX and streamlined workflows to ensure ease of use.',
-              'Built an entertainment app designed to help users relax and boost creativity.',
-              'Designed and implemented features for an AI-driven productivity app, allowing users to capture, organize, and structure ideas seamlessly.',
+            descriptionKeys: [
+              AppLocale.expDreambit1,
+              AppLocale.expDreambit2,
+              AppLocale.expDreambit3,
+              AppLocale.expDreambit4,
+              AppLocale.expDreambit5,
             ],
             color: Color(0xFFED64A6),
           ),
           ExperienceEntry(
-            title: 'Flutter Developer',
+            titleKey: AppLocale.expTitleFlutter,
             place: 'Forte Group',
             period: 'Jul 2023 – Jan 2025',
-            description: [
-              "Covered 60% of the app's main features with integration and unit tests.",
-              'Effectively collaborated in remote teams across time zones.',
-              'Engaged in collaborative coding.',
-              "Reduced the application's APK size by 30%, optimizing performance and improving user experience on low-storage devices.",
+            descriptionKeys: [
+              AppLocale.expForte1,
+              AppLocale.expForte2,
+              AppLocale.expForte3,
+              AppLocale.expForte4,
             ],
             color: Color(0xFF6C63FF),
           ),
           ExperienceEntry(
-            title: 'Flutter Developer',
+            titleKey: AppLocale.expTitleFlutter,
             place: 'Porada',
             period: 'Mar 2023 – Jul 2023',
-            description: [
-              'Worked with Supabase and GetStream to create the mentoring portal.',
-              'Created a live chat using GetStream.',
+            descriptionKeys: [
+              AppLocale.expPorada1,
+              AppLocale.expPorada2,
             ],
             color: Color(0xFF48BB78),
           ),
           ExperienceEntry(
-            title: 'Online English Teacher',
+            titleKey: AppLocale.expTitleTeacher,
             place: '',
             period: '2021 – 2023',
-            description: [
-              'Prepared lessons and maintained organized files and documentation for each student.',
+            descriptionKeys: [
+              AppLocale.expTeacher1,
             ],
             color: Color(0xFFF6AD55),
           ),
         ],
         education: EducationEntry(
-          program: 'Computer Science',
-          degree: "Bachelor's Degree",
-          period: '2018 – 2022',
+          institutionKey: AppLocale.educInstitution,
+          programKey: AppLocale.educProgram,
+          degreeKey: AppLocale.educDegreeBachelor,
+          period: 'Sep 2021 – Jun 2025',
         ),
         languages: [
           LanguageEntry(
-            language: 'Ukrainian',
+            languageKey: AppLocale.langUkrainian,
             levelKey: AppLocale.levelNative,
             progress: 1.0,
           ),
           LanguageEntry(
-            language: 'English',
+            languageKey: AppLocale.langEnglish,
             levelKey: AppLocale.levelProfessional,
             progress: 0.85,
           ),

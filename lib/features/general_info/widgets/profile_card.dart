@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 
 import '../../../../shared/theme/text_styles.dart';
 import 'wall_picture.dart';
 
 class ProfileCard extends StatelessWidget {
   final String name;
-  final String title;
-  final String location;
+  final String titleKey;
+  final String locationKey;
 
   const ProfileCard({
     super.key,
     required this.name,
-    required this.title,
-    required this.location,
+    required this.titleKey,
+    required this.locationKey,
   });
 
   @override
@@ -51,7 +52,7 @@ class ProfileCard extends StatelessWidget {
             ),
             const SizedBox(height: 2),
             Text(
-              '$title  •  $location',
+              '${titleKey.getString(context)}  •  ${locationKey.getString(context)}',
               textAlign: TextAlign.center,
               style: AppTextStyles.label(15, color: const Color(0xFF718096)),
             ),
